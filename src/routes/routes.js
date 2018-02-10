@@ -3,14 +3,17 @@ import { Provider } from 'react-redux';
 import { browserHistory, IndexRoute, Route, Router } from 'react-router';
 import {LoginContainer} from '../containers/LoginContainer'
 import {SignUpContainer} from '../containers/SignupContainer'
-
+import { AppContainer } from '../containers/AppContainer';
 
 const Routing = ({store}) => {
 	return(
 		<Provider store={store}>
 			<Router history={browserHistory}>
-				<Route path="/" component={LoginContainer}></Route>
-                <Route path="/signUp" component={SignUpContainer}></Route>
+				<Route path="/" component={AppContainer}>
+					<IndexRoute component={LoginContainer} />
+                    <Route path="/signIn" component={LoginContainer}></Route>
+					<Route path="/signUp" component={SignUpContainer}></Route>
+                </Route>
 			</Router>
 		</Provider>
 	);

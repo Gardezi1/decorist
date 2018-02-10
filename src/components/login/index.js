@@ -1,6 +1,8 @@
 import React from 'react'
-import {EMAIL, PASSWORD, LOGIN, SIGNUP} from '../../constants/user';
+import {EMAIL, PASSWORD, LOGIN, SIGNUPTEXTONLOGINPAGE} from '../../constants/user';
 import { Link } from 'react-router';
+import { Form, FormGroup, Col, Button, ControlLabel, FormControl} from 'react-bootstrap';
+import './index.css';
 
 export class Login extends React.Component{
 	
@@ -28,51 +30,46 @@ export class Login extends React.Component{
 
 	handleSubmit = e => {
 		e.preventDefault();
+
 		const credentials = {
-			email: this.state.email,
-			password: this.state.password
+			email: this.inputEmail.value,
+			password: this.inputPassword.value
 		};
 		this.props.onUserLogin(credentials);
 
 	}
 
 	render(){
-		const {email, password} = this.state;
 
 		return (
-
-
 			<div>
-                <Link to="signUp" >{SIGNUP}</Link>
+				<Form horizontal>
+					<FormGroup controlId="formHorizontalEmail">
+						<Col componentClass={ControlLabel} sm={2}>
+							{EMAIL}
+						</Col>
+						<Col sm={10}>
+							<FormControl type="email" placeholder={EMAIL} inputRef={inputEmail => {this.inputEmail = inputEmail}}/>
+						</Col>
+					</FormGroup>
 
-				<form onSubmit={this.handleSubmit}>
-					<label htmlFor="email">Email</label> 				
-					<input 
-						placeholder={EMAIL}
-						type="text" 
-						name="email" 
-						value={email} 
-						onChange={this.handleEmailChange}
-					/>
+					<FormGroup controlId="formHorizontalPassword">
+						<Col componentClass={ControlLabel} sm={2}>
+							{PASSWORD}
+						</Col>
+						<Col sm={10}>
+							<FormControl type="password" placeholder={PASSWORD} inputRef={inputPassword => {this.inputPassword = inputPassword}}/>
+						</Col>
+					</FormGroup>
 
-					<br />
-
-					<label htmlFor="password">Password</label>
-					<input 
-						placeholder={PASSWORD}
-						type="password" 
-						name="password" 
-						value={password} 
-						onChange={this.handlePasswordChange}
-					/>
-
-					<br />
-
-					 <button
-                        id="loginButton"                                                              
-                        type="submit"
-                    >{LOGIN}</button>
-				</form>	
+					<FormGroup>
+						<Col smOffset={2} sm={10}>
+							<Button type="submit" onClick={this.handleSubmit} bsClass="btn centerAlign">{LOGIN}</Button>
+						</Col>
+					</FormGroup>
+				</Form>
+				<br/>
+                <Link to="signUp" className="centerAlignSignUpText" >{SIGNUPTEXTONLOGINPAGE}</Link>
 			</div>
 		)
 	}
