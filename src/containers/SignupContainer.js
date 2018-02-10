@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import {
     signup
 } from '../redux/action_creators/user_actions_creators';
-import { Login } from '../components/login';
+import { SignUp } from '../components/signup';
 
 const mapStateToProps = (state, props) => {
     const {
@@ -24,6 +24,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 })
 
 
-export const LoginContainer = withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(Login)
+export const SignUpContainer = withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(SignUp)
 );

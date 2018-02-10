@@ -1,5 +1,6 @@
 import React from 'react'
-import {EMAIL, PASSWORD, LOGIN} from '../../constants/user';
+import {EMAIL, PASSWORD, LOGIN, SIGNUP} from '../../constants/user';
+import { Link } from 'react-router';
 
 export class Login extends React.Component{
 	
@@ -39,8 +40,10 @@ export class Login extends React.Component{
 		const {email, password} = this.state;
 
 		return (
-			<div>
 
+
+			<div>
+                <Link to="signUp" >{SIGNUP}</Link>
 
 				<form onSubmit={this.handleSubmit}>
 					<label htmlFor="email">Email</label> 				

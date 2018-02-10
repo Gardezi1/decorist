@@ -1,5 +1,6 @@
 import React from 'react'
-import {EMAIL, PASSWORD, LOGIN} from '../../constants/user';
+import {EMAIL, PASSWORD, AGAINENTERPASSWORD, SIGNUP, LOGIN} from '../../constants/user';
+import { Link } from 'react-router';
 
 export class SignUp extends React.Component{
 
@@ -7,7 +8,8 @@ export class SignUp extends React.Component{
         super(props);
         this.state={
             email: '',
-            password: ''
+            password: '',
+            passwordTwo: ''
         }
     }
 
@@ -25,23 +27,40 @@ export class SignUp extends React.Component{
         });
     }
 
+    handleRewritePasswordChange = e => {
+        this.setState({
+            passwordTwo: e.target.value
+        });
+    }
+
     handleSubmit = e => {
+
         e.preventDefault();
+
+        const {
+            email,
+            password,
+            passwordTwo
+        } = this.state;
+
+        if(password !== passwordTwo){
+            alert("Password do not match")
+            return;
+        }
         const credentials = {
-            email: this.state.email,
-            password: this.state.password
+            email,
+            password
         };
         this.props.onUserLogin(credentials);
 
     }
 
     render(){
-        const {email, password} = this.state;
+        const {email, password, passwordTwo} = this.state;
 
         return (
             <div>
-
-
+                <Link to="/" >{LOGIN}</Link>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="email">Email</label>
                     <input
@@ -63,12 +82,23 @@ export class SignUp extends React.Component{
                         onChange={this.handlePasswordChange}
                     />
 
+                    <br/>
+
+                    <label htmlFor="password2">Password</label>
+                    <input
+                        placeholder={AGAINENTERPASSWORD}
+                        type="password"
+                        name="password2"
+                        value={passwordTwo}
+                        onChange={this.handleRewritePasswordChange}
+                    />
+
                     <br />
 
                     <button
-                        id="loginButton"
+                        id="signupButton"
                         type="submit"
-                    >{LOGIN}</button>
+                    >{SIGNUP}</button>
                 </form>
             </div>
         )
