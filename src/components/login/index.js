@@ -3,6 +3,7 @@ import {EMAIL, PASSWORD, LOGIN, SIGNUPTEXTONLOGINPAGE} from '../../constants/use
 import { Link } from 'react-router';
 import { Form, FormGroup, Col, Button, ControlLabel, FormControl} from 'react-bootstrap';
 import './index.css';
+import { ToastContainer } from "react-toastr";
 
 export class Login extends React.Component{
 	
@@ -37,6 +38,17 @@ export class Login extends React.Component{
 		};
 		this.props.onUserLogin(credentials);
 
+	}
+
+    componentWillReceiveProps(nextProps){
+
+		if(nextProps.error === '' && nextProps.loading === false){
+			alert("Logged In");
+		}
+
+        if(nextProps.error !== '' && !nextProps.laoding ){
+            alert(nextProps.error);
+        }
 	}
 
 	render(){

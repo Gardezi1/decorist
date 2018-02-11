@@ -78,7 +78,7 @@ export class SignUp extends React.Component{
                         </Col>
                     </FormGroup>
 
-                    <FormGroup controlId="formHorizontalPassword">
+                    <FormGroup controlId="formHorizontalReEnterPassword">
                         <Col componentClass={ControlLabel} sm={2}>
                             {AGAINENTERPASSWORD}
                         </Col>
@@ -94,7 +94,7 @@ export class SignUp extends React.Component{
                     </FormGroup>
                 </Form>
                 <br/>
-                <Link to="signUp" className="centerAlignSignInText" >{LOGIN}</Link>
+                <Link to="signIn" className="centerAlignSignInText" >{LOGIN}</Link>
             </div>
         );
     }

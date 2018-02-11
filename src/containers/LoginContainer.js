@@ -6,15 +6,19 @@ import {
 import { Login } from '../components/login';
 
 const mapStateToProps = (state, props) => {
+
+
 	const {
 		error,
 		user,
-		jwt_token
-	} = props;
+		jwt_token,
+		loading
+	} = state.user;
 	return {
 		error,
 		user,
-		jwt_token
+		jwt_token,
+		loading
 	}
 } 
 
