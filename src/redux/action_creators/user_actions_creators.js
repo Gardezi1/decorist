@@ -1,10 +1,9 @@
 import {USER_ACTIONS} from '../actions/user_actions';
 
-export const login = credentails => ({
+export const login = credentials => ({
 	type: USER_ACTIONS.LOGIN,
-	credentails
+	credentials
 })
-
 
 export const signup = credentials => ({
 	type: USER_ACTIONS.SIGNUP,

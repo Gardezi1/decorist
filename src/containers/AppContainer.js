@@ -2,10 +2,6 @@ import React from 'react'
 import { Navbar} from 'react-bootstrap';
 
 export class AppContainer extends React.Component {
-    constructor(props){
-        super(props);
-    }
-
 
     renderChildrenWithProps() {
         const props = {
