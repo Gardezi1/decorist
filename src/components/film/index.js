@@ -90,7 +90,6 @@ export class Film extends React.Component{
                         <div className="panel-footer">
                             <div className="clearfix">
                                 <div className="btn-group btn-group-sm pull-right">
-                                    {/*<Link to="filmDetail" className="btn btn-blue" title="Detail">*/}
                                     <Link
                                         to={{
                                             pathname: "filmDetail",
