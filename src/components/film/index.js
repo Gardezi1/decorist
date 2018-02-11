@@ -1,17 +1,17 @@
-import React from 'react'
-import {EMAIL, PASSWORD, LOGIN, SIGNUPTEXTONLOGINPAGE} from '../../constants/user';
+import React from 'react';
 import { Link } from 'react-router';
-import { Form, FormGroup, Col, Button, ControlLabel, FormControl} from 'react-bootstrap';
+import {Form, FormGroup, Col, Button, ControlLabel, FormControl, Navbar, NavItem, Nav} from 'react-bootstrap';
 import './index.css';
-import {FilmFilterModal} from "../filmFilterModal";
-
+import ReactLoading from 'react-loading';
 export class Film extends React.Component{
     constructor( props){
         super(props);
         this.state = {
             films:[],
             film: [],
-            showSearchModal: false
+            showSearchModal: false,
+            loading: false
+
         }
     }
 
@@ -30,24 +30,87 @@ export class Film extends React.Component{
     filterFilms = () => {
     }
 
+    componentWillMount(){
+
+        this.props.getAllFilms(this.props.jwt_token);
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.error !== '')
+            alert(nextProps.error);
+        if(nextProps.loading){
+            this.setState({
+                loading: true,
+                films: nextProps.films
+            });
+        }else{
+            this.setState({
+                loading: false,
+                films: nextProps.films
+            });
+        }
+
+    }
+
+    renderFilmsList = () => {
+        const {
+            films
+        } = this.state;
+
+        let listItems = films.map((data, idx) => {
+            return (
+                <div key={idx} className="col-sm-6 col-md-3">
+                    <div className="panel panel-default" key={idx}>
+                        <div className="panel-heading">
+                            <h4 className="panel-title"><Link to="robot-detail" params={{id: idx}}>{data.title}</Link></h4>
+                        </div>
+                        <div className="panel-body text-center nopadding">
+                            <Link to="robot-detail" params={{id: idx}}>
+                                <img src={data.img_url}
+                                     width="200px" height="200px"/>
+                            </Link>
+                        </div>
+                        <div className="panel-footer">
+                            <div className="clearfix">
+                                <div className="btn-group btn-group-sm pull-right">
+                                    <Link to="robot-detail" className="btn btn-blue" title="Detail">
+                                        <span className="fa fa-eye"></span>
+                                    </Link>
+                                    <Link to="robot-edit" className="btn btn-orange" title="Edit">
+                                        <span className="fa fa-edit"></span>
+                                    </Link>
+                                    <a className="btn btn-red" title="Remove">
+                                        <span className="fa fa-times"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )})
+        return listItems;
+    }
+
     render(){
+
+        const {
+            films,
+            loading
+        } = this.state;
         const {
             showSearchModal
-        } = this.state;
+        } = this.state
         return (
             <div>
-                {   showSearchModal && <FilmFilterModal
-                        show={showSearchModal}
-                        handleClose={this.handleClose}
-                        filterFilms={this.filterFilms}
-                        handleSearch={this.filterFilms}
-                        inputRefs={filterRef => this.filterRefs = filterRef}
-                    />
+                {
+                    loading && <ReactLoading type="balls" color="#444" />
                 }
-                <div className="alignModalButton">
-                    <Button onClick={this.openFilmSearchModal} >Search</Button>
-                </div>
+
+                {
+                    !loading && this.renderFilmsList()
+                }
+
             </div>
-        )
+        );
     }
 }

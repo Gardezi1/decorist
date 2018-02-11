@@ -1,31 +1,32 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import {
-    login
-} from '../redux/action_creators/user_actions_creators';
+    getAllFilms
+} from '../redux/action_creators/film_action_creators';
 import {Film} from "../components/film";
 
 const mapStateToProps = (state, props) => {
-
+    const {
+        jwt_token,
+    } = state.user;
 
     const {
+        films,
         error,
-        user,
-        jwt_token,
         loading
-    } = state.user;
+    } = state.films
     return {
         error,
-        user,
+        loading,
         jwt_token,
-        loading
+        films
     }
 }
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    onUserLogin : credentials => {
-        dispatch(login(credentials));
+    getAllFilms : jwt_token => {
+        dispatch(getAllFilms(jwt_token));
     },
 })
 

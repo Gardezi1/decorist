@@ -40,10 +40,15 @@ export class Login extends React.Component{
 
 	}
 
+	componentWillMount(){
+
+	}
+
     componentWillReceiveProps(nextProps){
 
 		if(nextProps.error === '' && nextProps.loading === false){
 			alert("Logged In");
+            this.props.router.push('/home')
 		}
 
         if(nextProps.error !== '' && !nextProps.laoding ){

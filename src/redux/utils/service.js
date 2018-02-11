@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const user_api_url = 'http://decorist-user-api.herokuapp.com/api/v1/';
+const film_api_url = 'https://decorist-films-api.herokuapp.com/api/v1/';
 
 /**
  *
@@ -57,6 +58,21 @@ export const userProfile = (jwt_token) => {
         url:`${user_api_url}accounts/profile/`,
         headers: {
             'Authorization': `JWT ${jwt_token}`
+        }
+    })
+    .then(response => response.data)
+    .catch(err =>{
+        throw err;
+    });
+}
+
+export const getAllFilmss = (jwt_token) => {
+
+    return axios({
+        method: 'get',
+        url:`${film_api_url}films`,
+        headers: {
+            'Authorization': `JWT ${jwt_token.jwt_token}`
         }
     })
     .then(response => response.data)

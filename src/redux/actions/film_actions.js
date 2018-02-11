@@ -1,0 +1,6 @@
+// TODO: Add Support for object shorthand properties
+export const FILM_ACTIONS = {
+    GETALLFILMS: 'GETALLFILMS',
+    GETALLFILMS_RESOLVED: 'GETALLFILMS_RESOLVED',
+    GETALLFILMS_REJECTED: 'GETALLFILMS_REJECTED'
+};
