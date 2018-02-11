@@ -5,7 +5,8 @@ import {
 export const DEFAULT_FILM_STATE={
     error:'',
     loading: false,
-    films: []
+    films: [],
+    film:[]
 }
 
 

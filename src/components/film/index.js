@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import {Form, FormGroup, Col, Button, ControlLabel, FormControl, Navbar, NavItem, Nav} from 'react-bootstrap';
 import './index.css';
 import ReactLoading from 'react-loading';
+import {FilmDetail} from "./editFilm";
 export class Film extends React.Component{
     constructor( props){
         super(props);
@@ -62,10 +63,26 @@ export class Film extends React.Component{
                 <div key={idx} className="col-sm-6 col-md-3">
                     <div className="panel panel-default" key={idx}>
                         <div className="panel-heading">
-                            <h4 className="panel-title"><Link to="robot-detail" params={{id: idx}}>{data.title}</Link></h4>
+                            <h4 className="panel-title">
+                                <Link
+                                    to={{
+                                        pathname: "filmDetail",
+                                        state: {
+                                            params: data
+                                        }
+                                    }}
+                                >
+                                    {data.title}
+                                </Link>
+                            </h4>
                         </div>
                         <div className="panel-body text-center nopadding">
-                            <Link to="robot-detail" params={{id: idx}}>
+                            <Link to={{
+                                    pathname: "filmDetail",
+                                    state: {
+                                        params: data
+                                    }
+                                }} >
                                 <img src={data.img_url}
                                      width="200px" height="200px"/>
                             </Link>
@@ -73,15 +90,19 @@ export class Film extends React.Component{
                         <div className="panel-footer">
                             <div className="clearfix">
                                 <div className="btn-group btn-group-sm pull-right">
-                                    <Link to="robot-detail" className="btn btn-blue" title="Detail">
+                                    {/*<Link to="filmDetail" className="btn btn-blue" title="Detail">*/}
+                                    <Link
+                                        to={{
+                                            pathname: "filmDetail",
+                                            state: {
+                                                params: data
+                                            }
+                                        }}
+                                        className="btn btn-blue"
+                                        title="Detail"
+                                    >
                                         <span className="fa fa-eye"></span>
                                     </Link>
-                                    <Link to="robot-edit" className="btn btn-orange" title="Edit">
-                                        <span className="fa fa-edit"></span>
-                                    </Link>
-                                    <a className="btn btn-red" title="Remove">
-                                        <span className="fa fa-times"></span>
-                                    </a>
                                 </div>
                             </div>
                         </div>
