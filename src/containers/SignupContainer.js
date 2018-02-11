@@ -9,7 +9,7 @@ const mapStateToProps = (state, props) => {
     const {
         error,
         jwt_token
-    } = props;
+    } = state.user;
     return {
         error,
         jwt_token

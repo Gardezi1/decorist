@@ -55,11 +55,13 @@ export const user = (state= DEFAULT_USER_STATE, action) => {
             };
             break;
         case USER_ACTIONS.SIGNUP_REJECTED:
+
             return {
                 ...state,
                 loading:false,
-                error:  action.paylaod.error
+                error:  action.payload.error
             };
+
             break;
 		case USER_ACTIONS.LOGOUT:
 			return {

@@ -55,6 +55,13 @@ export class SignUp extends React.Component{
 
     }
 
+    componentWillReceiveProps(nextProps){
+        
+        if(nextProps.error !== '' && !nextProps.laoding ){
+            alert(nextProps.error);
+        }
+    }
+
     render(){
 
         return (

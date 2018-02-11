@@ -43,6 +43,7 @@ export function* signUp(data){
             payload: res
         })
     } catch (error) {
+
         yield put ({
             type: USER_ACTIONS.SIGNUP_REJECTED,
             payload: {
@@ -51,12 +52,15 @@ export function* signUp(data){
             }
         })
     }
-}\
+}
 
 
 function createErrorString(error){
 
-    return _.map(error.response.data.non_field_errors, (data) => {
-        return data
-    }).join(",")
+    let data =  _.map(error.response.data, (data, key) => {
+
+        const dataString = data.join(',')
+        return `${key}: ${dataString}`
+    }).join(" ")
+    return data;
 }
