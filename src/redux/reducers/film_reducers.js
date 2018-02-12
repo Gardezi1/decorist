@@ -6,7 +6,8 @@ export const DEFAULT_FILM_STATE={
     error:'',
     loading: false,
     films: [],
-    film:[]
+    film:[],
+    action: ''
 }
 
 
@@ -16,7 +17,8 @@ export const films = (state= DEFAULT_FILM_STATE, actions) => {
             return {
                 ...state,
                 loading: true,
-                error: ''
+                error: '',
+                action: "get"
             }
             break;
         case FILM_ACTIONS.GETALLFILMS_RESOLVED:
@@ -24,21 +26,24 @@ export const films = (state= DEFAULT_FILM_STATE, actions) => {
                 ...state,
                 loading: false,
                 error: '',
-                films: actions.payload.films.results
+                films: actions.payload.films.results,
+                action: "get_resolved"
             }
             break;
         case FILM_ACTIONS.GETALLFILMS_REJECTED:
             return {
                 ...state,
                 loading: false,
-                error: actions.payload.error
+                error: actions.payload.error,
+                action: "get_rejected"
             }
             break;
         case FILM_ACTIONS.UPDATEFILMDETAIL:
             return {
                 ...state,
                 loading: true,
-                error: ''
+                error: '',
+                action: "update"
             }
             break;
         case FILM_ACTIONS.UPDATEFILMDETAIL_RESOLVED:
@@ -46,14 +51,16 @@ export const films = (state= DEFAULT_FILM_STATE, actions) => {
             return {
                 ...state,
                 loading:false,
-                error: ''
+                error: '',
+                action: "update_resolved"
             }
             break;
         case FILM_ACTIONS.UPDATEILMDETAIL_REJECTED:
             return {
                 ...state,
                 loading: false,
-                error: actions.payload.error
+                error: actions.payload.error,
+                action: "update_rejected"
             }
             break;
         default:
