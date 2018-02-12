@@ -77,7 +77,6 @@ export class Film extends React.Component{
         } = this.state;
 
         let listItems = films.map((data, idx) => {
-            debugger;
             return (
                 <div key={idx} className="col-sm-5 col-md-5">
                     <div className="panel panel-default" key={idx}>

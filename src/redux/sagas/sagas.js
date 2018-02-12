@@ -1,4 +1,5 @@
-import { takeEvery } from 'redux-saga/effects';
+import
+{ takeEvery } from 'redux-saga/effects';
 import {USER_ACTIONS} from '../actions/user_actions';
 import {FILM_ACTIONS} from '../actions/film_actions';
 
@@ -13,7 +14,8 @@ import {
 	getAllFilms,
 	updateFilm,
 	deleteFilm,
-    addFilm
+    addFilm,
+    addFilmRating
 } from './film/film_saga'
 
 
@@ -24,6 +26,7 @@ export function* sagas(){
 	yield takeEvery(FILM_ACTIONS.UPDATEFILMDETAIL, updateFilm);
 	yield takeEvery(FILM_ACTIONS.DELETEFILM, deleteFilm);
 	yield takeEvery(FILM_ACTIONS.ADDFILM, addFilm);
+	yield takeEvery(FILM_ACTIONS.ADDRATING, addFilmRating);
 }
 
 

@@ -9,6 +9,8 @@ export class FilmDetail extends React.Component{
         this.state = {
             film: [],
             edit: false,
+            rateLoader: false,
+            rateValue: 0
         }
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this)
@@ -67,8 +69,15 @@ export class FilmDetail extends React.Component{
         )
     }
 
-    ratingChanged = (ratingChanged) => {
-        console.log(ratingChanged);
+    ratingChanged = (filmId, ratingChanged) => {
+        const {
+            jwt_token
+        } = this.props;
+        this.setState({
+            rateValue: ratingChanged
+        })
+        this.props.updateFilmRating(filmId, ratingChanged,jwt_token)
+
     }
 
     componentWillMount(){
@@ -79,7 +88,7 @@ export class FilmDetail extends React.Component{
 
     componentWillReceiveProps(nextProps){
 
-        if(nextProps.loading === false) {
+        if(nextProps.loading === false  && nextProps.action === 'update_resolved') {
             alert("Updated");
             this.setState({
                 edit: false
@@ -90,13 +99,31 @@ export class FilmDetail extends React.Component{
         if(nextProps.error !== '' && !nextProps.laoding ){
             alert(nextProps.error);
         }
+
+        if(nextProps.loading === true && nextProps.action === 'addrating'){
+            this.setState({
+                rateLoader: true
+            })
+        }else if(nextProps.loading === false && nextProps.action === 'addrating_resolved'){
+            alert("Response has been added");
+            this.setState({
+                rateLoader: false
+            })
+        }else if(nextProps.loading === false && nextProps.action === 'addrating_rejected'){
+            alert("Something went wrong. Please rate again");
+            this.setState({
+                rateLoader: false
+            })
+        }
     }
 
     render = () =>{
 
         const {
             film,
-            edit
+            edit,
+            rateLoader,
+            rateValue
         } = this.state;
 
         return (
@@ -113,12 +140,13 @@ export class FilmDetail extends React.Component{
                                 <span>
                                     <ReactStars
                                         count={10}
-                                        onChange={this.ratingChanged}
+                                        onChange={(rating) => {return this.ratingChanged(film.id,rating )}}
                                         size={24}
                                         color2={'#ffd700'}
                                         half={false}
-                                        value={film.average_score}
-                                />
+                                        edit={!rateLoader}
+                                        value={rateValue}
+                                    />
                                 </span>
                             </h1>
                             <fieldset>

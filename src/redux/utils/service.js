@@ -129,3 +129,22 @@ export const addANewFilm = (data, jwt_token) => {
             throw err;
         });
 }
+
+export const addMyFilmRating = (filmId, rating, jwt_token) => {
+
+    return axios({
+        method: 'post',
+        url:`${film_api_url}films/${filmId}/ratings/`,
+        headers: {
+            'Authorization': `JWT ${jwt_token}`
+        },
+        data:{
+            film: filmId,
+            score: rating
+        }
+    })
+        .then(response => response.data)
+        .catch(err =>{
+            throw err;
+        });
+}

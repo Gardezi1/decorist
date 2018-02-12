@@ -36,3 +36,12 @@ export const addFilm= (data, jwt_token) => {
         jwt_token
     }
 }
+
+export const addRating = (filmId, rating, jwt_token) => {
+    return {
+        type: FILM_ACTIONS.ADDRATING,
+        filmId,
+        rating,
+        jwt_token
+    }
+}

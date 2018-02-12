@@ -104,6 +104,27 @@ export const films = (state= DEFAULT_FILM_STATE, actions) => {
                 action: "add_rejected"
             }
             break;
+        case FILM_ACTIONS.ADDRATING:
+            return {
+                ...state,
+                loading: true,
+                error:'',
+                action: "addrating"
+            }
+        case FILM_ACTIONS.ADDRATING_RESOLVED:
+            return {
+                ...state,
+                loading: false,
+                error:'',
+                action: "addrating_resolved"
+            }
+        case FILM_ACTIONS.ADDRATING_REJECTED:
+            return {
+                ...state,
+                loading:false,
+                error:actions.payload.error,
+                action: "addrating_rejected"
+            }
         default:
             return {
                 ...state

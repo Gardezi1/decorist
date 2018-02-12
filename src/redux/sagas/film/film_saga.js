@@ -5,7 +5,8 @@ import {
     getAllFilmss,
     updateFilmDetails,
     deleteFilmDetails,
-    addANewFilm
+    addANewFilm,
+    addMyFilmRating
 } from "../../utils/service";
 import _ from "lodash";
 
@@ -73,7 +74,7 @@ export function* deleteFilm({filmId, jwt_token}){
 export function* addFilm({data, jwt_token}){
     try{
         const res = yield call(addANewFilm, data, jwt_token);
-        console.log(res);
+
         yield put({
             type: FILM_ACTIONS.GETALLFILMS,
             jwt_token
@@ -83,6 +84,25 @@ export function* addFilm({data, jwt_token}){
 
         yield put ({
             type: FILM_ACTIONS.UPDATEILMDETAIL_REJECTED,
+            payload: {
+                error: createErrorString(error)
+            }
+        })
+    }
+}
+
+export function* addFilmRating({filmId, rating, jwt_token}){
+
+    try{
+        const res = yield call(addMyFilmRating,filmId, rating, jwt_token);
+        yield put({
+            type: FILM_ACTIONS.ADDRATING_RESOLVED,
+        })
+    } catch (error) {
+
+
+        yield put ({
+                type: FILM_ACTIONS.UPDATEILMDETAIL_REJECTED,
             payload: {
                 error: createErrorString(error)
             }
