@@ -23,7 +23,7 @@ const localStorageMiddleware = ({getState}) => {
 
 
 const reHydrateStore = () => {
-    if(localStorage.getItem('applicationState') !== null)
+    if (localStorage.getItem('applicationState') !== null)
         JSON.parse(localStorage.getItem('applicationState')) // re-hydrate the store
 }
 

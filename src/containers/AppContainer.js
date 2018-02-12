@@ -1,14 +1,25 @@
 import React from 'react'
-import {Navbar} from 'react-bootstrap';
+
+import {Link} from 'react-router';
+import {Navbar, Nav} from 'react-bootstrap';
 
 export class AppContainer extends React.Component {
+
+    showLogoutLink() {
+        console.log(this.props.location.pathname);
+        if (this.props.location.pathname === '/' || this.props.location.pathname === 'signup') {
+            return false
+        } else {
+            return true;
+        }
+    }
+
 
     renderChildrenWithProps() {
         const props = {
             ...this.props
         };
 
-        console.log(this.props.location.pathname);
         return React.Children.map(this.props.children, child => {
             return React.cloneElement(child, props);
         });
@@ -25,6 +36,13 @@ export class AppContainer extends React.Component {
                         </Navbar.Brand>
                         <Navbar.Toggle/>
                     </Navbar.Header>
+                    {this.showLogoutLink() &&
+                    <Nav pullRight>
+                        <Link eventKey={1} href="#">
+                            Link Right
+                        </Link>
+                    </Nav>
+                    }
                 </Navbar>;
                 <div className="container">
                     {this.renderChildrenWithProps()}

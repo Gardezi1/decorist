@@ -151,9 +151,8 @@ export const addMyFilmRating = (filmId, rating, jwt_token) => {
 }
 
 
-
 export const filterFilms = (queryString, jwt_token) => {
-    
+
 
     return axios({
         method: 'get',

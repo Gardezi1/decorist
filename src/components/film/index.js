@@ -9,28 +9,6 @@ import ReactStars from 'react-stars'
 
 export class Film extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            films: [],
-            film: [],
-            showCreateModal: false,
-            loading: false,
-            hasMoreItems: true,
-            title: '',
-            description: '',
-            min_year: '',
-            max_year: '',
-            hasMore: true
-
-        }
-    }
-
-    componentWillMount() {
-
-        // this.props.getAllFilms(this.props.jwt_token, limit);
-    }
-
     handleDelete = (id) => {
 
         const {
@@ -53,7 +31,7 @@ export class Film extends React.Component {
         )
     }
     loadItems = (page_number) => {
-        
+
         const queryStringData = this.makeFilterQueryString();
         this.props.getAllFilms(this.props.jwt_token, page_number * 10, queryStringData);
     }
@@ -145,68 +123,36 @@ export class Film extends React.Component {
             </div>
         );
     }
-
     arraysEqual = (arr1, arr2) => {
-        if(arr1.length !== arr2.length)
+        if (arr1.length !== arr2.length)
             return false;
-        for(var i = arr1.length; i--;) {
-            if(arr1[i] !== arr2[i])
+        for (var i = arr1.length; i--;) {
+            if (arr1[i] !== arr2[i])
                 return false;
         }
 
         return true;
     }
-
-    componentWillReceiveProps(nextProps) {
-        if(this.arraysEqual(nextProps.films, this.state.films))
-            this.setState({
-                hasMore: false
-            })
-        else
-             this.setState({
-                hasMore: true
-            })
-        if (nextProps.error !== '')
-            alert(nextProps.error);
-
-        if(this.arraysEqual)
-        if (nextProps.loading) {
-            this.setState({
-                loading: true,
-                films: nextProps.films
-            });
-        } else {
-            this.setState({
-                loading: false,
-                films: nextProps.films
-            });
-        }
-    }
-
-    handleTitleChange = (e) =>{
+    handleTitleChange = (e) => {
         this.setState({
             title: e.target.value
         })
     }
-
-    handleDescriptionChange = (e) =>{
+    handleDescriptionChange = (e) => {
         this.setState({
             description: e.target.value
         })
     }
-
-    handleMinYearChange = (e) =>{
+    handleMinYearChange = (e) => {
         this.setState({
             min_year: e.target.value
         })
     }
-
-    handleMaxYearChange = (e) =>{
+    handleMaxYearChange = (e) => {
         this.setState({
             max_year: e.target.value
         })
     }
-
     makeFilterQueryString = () => {
         const {
             title,
@@ -218,32 +164,79 @@ export class Film extends React.Component {
         const {
             jwt_token
         } = this.props;
-        
+
         let queryStringData = ''
-        if(title !== ""){
+        if (title !== "") {
             queryStringData = `title=${title}`;
         }
 
-        if(description !== ""){
+        if (description !== "") {
             queryStringData = `${queryStringData}&description=${description}`
         }
 
-        if(min_year !== ""){
+        if (min_year !== "") {
             queryStringData = `${queryStringData}&min_year=${min_year}`;
         }
 
-        if(max_year !== ""){
+        if (max_year !== "") {
             queryStringData = `${queryStringData}&max_year=${max_year}`
         }
         return queryStringData;
     }
-
     handleFilter = () => {
-      const {
-        jwt_token
-      }  = this.props;
-      const queryStringData = this.makeFilterQueryString();  
-      this.props.filterResult(queryStringData, jwt_token)  
+        const {
+            jwt_token
+        } = this.props;
+        const queryStringData = this.makeFilterQueryString();
+        this.props.filterResult(queryStringData, jwt_token)
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            films: [],
+            film: [],
+            showCreateModal: false,
+            loading: false,
+            hasMoreItems: true,
+            title: '',
+            description: '',
+            min_year: '',
+            max_year: '',
+            hasMore: true
+
+        }
+    }
+
+    componentWillMount() {
+
+        // this.props.getAllFilms(this.props.jwt_token, limit);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.arraysEqual(nextProps.films, this.state.films))
+            this.setState({
+                hasMore: false
+            })
+        else
+            this.setState({
+                hasMore: true
+            })
+        if (nextProps.error !== '')
+            alert(nextProps.error);
+
+        if (this.arraysEqual)
+            if (nextProps.loading) {
+                this.setState({
+                    loading: true,
+                    films: nextProps.films
+                });
+            } else {
+                this.setState({
+                    loading: false,
+                    films: nextProps.films
+                });
+            }
     }
 
     render() {
@@ -262,28 +255,34 @@ export class Film extends React.Component {
                     <div className="container">
 
                         <div className="pull-left">
-                            <input type="text" className="headerInputBoxes"  value={title} placeholder="Title" onChange={this.handleTitleChange}/>
+                            <input type="text" className="headerInputBoxes" value={title} placeholder="Title"
+                                   onChange={this.handleTitleChange}/>
                         </div>
 
                         <div className="pull-left">
-                            <input type="text" className="headerInputBoxes"  value={description} placeholder="Description" onChange={this.handleTitleChange}/>
+                            <input type="text" className="headerInputBoxes" value={description}
+                                   placeholder="Description" onChange={this.handleTitleChange}/>
                         </div>
 
                         <div className="pull-left">
-                            <input type="text" className="headerInputBoxes" maxLength="4" value={min_year} placeholder="Min Year" onChange={this.handleMinYearChange}/>
+                            <input type="text" className="headerInputBoxes" maxLength="4" value={min_year}
+                                   placeholder="Min Year" onChange={this.handleMinYearChange}/>
                         </div>
 
                         <div className="pull-left">
-                            <input type="text" className="headerInputBoxes" maxLength="4" value={max_year} placeholder="Max Year" onChange={this.handleMaxYearChange}/>
+                            <input type="text" className="headerInputBoxes" maxLength="4" value={max_year}
+                                   placeholder="Max Year" onChange={this.handleMaxYearChange}/>
                         </div>
 
                         <div className="pull-left">
-                            <Button className="btn btn-sm btn-green btn-success" onClick={this.handleFilter}><span className="fa fa-search"></span></Button>
+                            <Button className="btn btn-sm btn-green btn-success" onClick={this.handleFilter}><span
+                                className="fa fa-search"></span></Button>
                         </div>
 
                         <div className="pull-right alignAddButton">
 
-                            <Button className="btn btn-sm btn-green btn-success" onClick={this.handleModalToggle}><span className="fa fa-plus"></span></Button>
+                            <Button className="btn btn-sm btn-green btn-success" onClick={this.handleModalToggle}><span
+                                className="fa fa-plus"></span></Button>
 
                         </div>
                     </div>
