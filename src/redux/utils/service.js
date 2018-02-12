@@ -97,3 +97,18 @@ export const updateFilmDetails = (filmId, filmData, jwt_token) => {
         throw err;
     });
 }
+
+export const deleteFilmDetails = (filmId, jwt_token) => {
+
+    return axios({
+        method: 'delete',
+        url:`${film_api_url}films/${filmId}`,
+        headers: {
+            'Authorization': `JWT ${jwt_token}`
+        }
+    })
+    .then(response => response.data)
+    .catch(err =>{
+        throw err;
+    });
+}

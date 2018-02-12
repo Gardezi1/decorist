@@ -25,11 +25,10 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     updateFilmData : (filmId ,filmData, jwt_token)=> {
-        console.log(filmId);
-        console.log(filmData);
-        console.log(jwt_token);
+
         dispatch(updateFilm(filmId,filmData, jwt_token));
-    },
+    }
+
 })
 
 

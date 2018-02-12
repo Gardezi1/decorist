@@ -16,24 +16,17 @@ export class Film extends React.Component{
         }
     }
 
-    handleClose = () => {
-        this.setState({
-            showSearchModal: false
-        })
-    }
-
-    openFilmSearchModal = () => {
-        this.setState({
-            showSearchModal: true
-        })
-    }
-
-    filterFilms = () => {
-    }
-
     componentWillMount(){
 
         this.props.getAllFilms(this.props.jwt_token);
+    }
+
+    handleDelete = (id) => {
+
+        const {
+            jwt_token
+        }  = this.props;
+        this.props.handleDelete(id, jwt_token)
     }
 
     componentWillReceiveProps(nextProps){
@@ -102,6 +95,9 @@ export class Film extends React.Component{
                                     >
                                         <span className="fa fa-eye"></span>
                                     </Link>
+                                    <Button onClick={(e) =>{this.handleDelete(data.id)}} className="btn-group btn-group-sm pull-right">
+                                        <span className="fa fa-trash"></span>
+                                    </Button>
                                 </div>
                             </div>
                         </div>

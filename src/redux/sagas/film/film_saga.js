@@ -3,7 +3,8 @@ import {put, call} from "redux-saga/effects";
 import { browserHistory } from 'react-router';
 import {
     getAllFilmss,
-    updateFilmDetails
+    updateFilmDetails,
+    deleteFilmDetails
 } from "../../utils/service";
 import _ from "lodash";
 
@@ -37,6 +38,25 @@ export function* updateFilm({filmId, filmData, jwt_token}){
             payload: {
                 films: res,
             }
+        })
+    } catch (error) {
+
+
+        yield put ({
+            type: FILM_ACTIONS.UPDATEILMDETAIL_REJECTED,
+            payload: {
+                error: createErrorString(error)
+            }
+        })
+    }
+}
+
+export function* deleteFilm({filmId, jwt_token}){
+    try{
+        const res = yield call(deleteFilmDetails, filmId, jwt_token);
+        yield put({
+            type: FILM_ACTIONS.GETALLFILMS,
+            jwt_token
         })
     } catch (error) {
 

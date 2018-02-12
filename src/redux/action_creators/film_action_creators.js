@@ -17,3 +17,11 @@ export const updateFilm = (filmId,filmData, jwt_token) => {
         jwt_token
     }
 }
+
+export const deleteFilm = (filmId, jwt_token) => {
+    return {
+        type: FILM_ACTIONS.DELETEFILM,
+        filmId,
+        jwt_token
+    }
+}
