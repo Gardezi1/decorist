@@ -5,6 +5,7 @@ import './index.css';
 import ReactLoading from 'react-loading';
 import  {FilmCreateModal}  from '../filmCreateModal'
 import InfiniteScroll from 'react-infinite-scroller';
+import ReactStars from 'react-stars'
 
 export class Film extends React.Component{
     constructor( props){
@@ -76,6 +77,7 @@ export class Film extends React.Component{
         } = this.state;
 
         let listItems = films.map((data, idx) => {
+            debugger;
             return (
                 <div key={idx} className="col-sm-5 col-md-5">
                     <div className="panel panel-default" key={idx}>
@@ -106,6 +108,17 @@ export class Film extends React.Component{
                         </div>
                         <div className="panel-footer">
                             <div className="clearfix">
+                                <div className=" pull-left">
+                                    <span><ReactStars
+                                        count={10}
+                                        size={24}
+                                        color2={'#ffd700'}
+                                        half={false}
+                                        edit={false}
+                                        value={data.average_score}
+                                        /></span>
+                                </div>
+
                                 <div className="btn-group btn-group-sm pull-right">
                                     <Link
                                         to={{
