@@ -22,9 +22,13 @@ const localStorageMiddleware = ({getState}) => {
 };
 
 
+const reHydrateStore = () => {
+
+}
+
+
 const store = createStore(
     decoristReducers,
-    JSON.parse(localStorage.getItem('applicationState')), // re-hydrate the store
     applyMiddleware(
         sagaMiddleware,
         localStorageMiddleware,
