@@ -1,16 +1,16 @@
 import {combineReducers} from 'redux';
 import {
-	user
+    user
 
 } from './user_reducers';
 import {
-	films
+    films
 } from './film_reducers'
 
 
 export const decoristReducers = combineReducers({
-	user,
-	films
+    user,
+    films
 });
 
 export default decoristReducers;

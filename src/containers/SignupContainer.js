@@ -1,9 +1,9 @@
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 import {
     signup
 } from '../redux/action_creators/user_actions_creators';
-import { SignUp } from '../components/signup';
+import {SignUp} from '../components/signup';
 
 const mapStateToProps = (state, props) => {
     const {
@@ -18,7 +18,7 @@ const mapStateToProps = (state, props) => {
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    onUserSignup : credentials => {
+    onUserSignup: credentials => {
         dispatch(signup(credentials));
     },
 })

@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 import {
     updateFilm,
     addRating
@@ -27,9 +27,9 @@ const mapStateToProps = (state, props) => {
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    updateFilmData : (filmId ,filmData, jwt_token)=> {
+    updateFilmData: (filmId, filmData, jwt_token) => {
 
-        dispatch(updateFilm(filmId,filmData, jwt_token));
+        dispatch(updateFilm(filmId, filmData, jwt_token));
     },
     updateFilmRating: (filmId, rating, jwt_token) => {
         dispatch(addRating(filmId, rating, jwt_token));

@@ -1,35 +1,35 @@
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 import {
-	login
+    login
 } from '../redux/action_creators/user_actions_creators';
-import { Login } from '../components/login';
+import {Login} from '../components/login';
 
 const mapStateToProps = (state, props) => {
 
 
-	const {
-		error,
-		user,
-		jwt_token,
-		loading
-	} = state.user;
-	return {
-		error,
-		user,
-		jwt_token,
-		loading
-	}
-} 
+    const {
+        error,
+        user,
+        jwt_token,
+        loading
+    } = state.user;
+    return {
+        error,
+        user,
+        jwt_token,
+        loading
+    }
+}
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	onUserLogin : credentials => {
+    onUserLogin: credentials => {
         dispatch(login(credentials));
     },
 })
 
 
 export const LoginContainer = withRouter(
-	connect(mapStateToProps, mapDispatchToProps)(Login)
+    connect(mapStateToProps, mapDispatchToProps)(Login)
 );

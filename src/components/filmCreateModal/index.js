@@ -4,7 +4,7 @@ import {DESCRIPTION, YEAR, TITLE} from '../../constants/film';
 import {Form, FormGroup, Button, ControlLabel, FormControl, Modal, Col} from 'react-bootstrap';
 import './index.css';
 
-export class FilmCreateModal extends React.Component{
+export class FilmCreateModal extends React.Component {
 
     createFilm = () => {
         let dataArray = {
@@ -16,7 +16,7 @@ export class FilmCreateModal extends React.Component{
     }
 
 
-    render(){
+    render() {
 
         return (
             <Modal show={this.props.show} onHide={this.props.handleClose}>
@@ -24,14 +24,16 @@ export class FilmCreateModal extends React.Component{
                     <Modal.Title>Filter</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form  horizontal>
+                    <Form horizontal>
 
                         <FormGroup controlId="formHorizontalTitle">
                             <Col componentClass={ControlLabel} sm={2}>
                                 {TITLE}
                             </Col>
                             <Col sm={10}>
-                                <FormControl type="text" placeholder={TITLE} inputRef={inputName => {this.inputName = inputName}}/>
+                                <FormControl type="text" placeholder={TITLE} inputRef={inputName => {
+                                    this.inputName = inputName
+                                }}/>
                             </Col>
                         </FormGroup>
 
@@ -40,7 +42,9 @@ export class FilmCreateModal extends React.Component{
                                 {DESCRIPTION}
                             </Col>
                             <Col sm={10}>
-                                <FormControl type="text" placeholder={DESCRIPTION} inputRef={inputDescription => {this.inputDescription= inputDescription}}/>
+                                <FormControl type="text" placeholder={DESCRIPTION} inputRef={inputDescription => {
+                                    this.inputDescription = inputDescription
+                                }}/>
                             </Col>
                         </FormGroup>
 
@@ -49,13 +53,15 @@ export class FilmCreateModal extends React.Component{
                                 {YEAR}
                             </Col>
                             <Col sm={10}>
-                                <FormControl type="text" placeholder={YEAR} inputRef={inputYear => {this.inputYear= inputYear}}/>
+                                <FormControl type="text" placeholder={YEAR} inputRef={inputYear => {
+                                    this.inputYear = inputYear
+                                }}/>
                             </Col>
                         </FormGroup>
 
                         <FormGroup>
                             <Col smOffset={2} sm={10} className="alignModalButton">
-                                <Button bsStyle="primary"  onClick={this.createFilm}>Create</Button>
+                                <Button bsStyle="primary" onClick={this.createFilm}>Create</Button>
                             </Col>
                         </FormGroup>
                     </Form>;

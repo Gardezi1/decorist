@@ -2,16 +2,16 @@ import {
     FILM_ACTIONS
 } from '../actions/film_actions'
 
-export const DEFAULT_FILM_STATE={
-    error:'',
+export const DEFAULT_FILM_STATE = {
+    error: '',
     loading: false,
     films: [],
-    film:[],
+    film: [],
     action: ''
 }
 
 
-export const films = (state= DEFAULT_FILM_STATE, actions) => {
+export const films = (state = DEFAULT_FILM_STATE, actions) => {
     switch (actions.type) {
         case FILM_ACTIONS.GETALLFILMS:
             return {
@@ -50,7 +50,7 @@ export const films = (state= DEFAULT_FILM_STATE, actions) => {
 
             return {
                 ...state,
-                loading:false,
+                loading: false,
                 error: '',
                 action: "update_resolved"
             }
@@ -66,7 +66,7 @@ export const films = (state= DEFAULT_FILM_STATE, actions) => {
         case FILM_ACTIONS.DELETEFILM_RESOLVED:
             return {
                 ...state,
-                loading:false,
+                loading: false,
                 error: '',
                 action: "delete_resolved"
             }
@@ -91,7 +91,7 @@ export const films = (state= DEFAULT_FILM_STATE, actions) => {
 
             return {
                 ...state,
-                loading:false,
+                loading: false,
                 error: '',
                 action: "add_resolved"
             }
@@ -108,21 +108,21 @@ export const films = (state= DEFAULT_FILM_STATE, actions) => {
             return {
                 ...state,
                 loading: true,
-                error:'',
+                error: '',
                 action: "addrating"
             }
         case FILM_ACTIONS.ADDRATING_RESOLVED:
             return {
                 ...state,
                 loading: false,
-                error:'',
+                error: '',
                 action: "addrating_resolved"
             }
         case FILM_ACTIONS.ADDRATING_REJECTED:
             return {
                 ...state,
-                loading:false,
-                error:actions.payload.error,
+                loading: false,
+                error: actions.payload.error,
                 action: "addrating_rejected"
             }
         default:

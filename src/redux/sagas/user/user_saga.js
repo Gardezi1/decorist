@@ -1,6 +1,6 @@
 import {USER_ACTIONS} from "../../actions/user_actions";
 import {put, call} from "redux-saga/effects";
-import { browserHistory } from 'react-router';
+import {browserHistory} from 'react-router';
 import {
     signIn,
     userProfile,
@@ -8,9 +8,9 @@ import {
 } from "../../utils/service";
 import _ from "lodash";
 
-export function* login(data){
+export function* login(data) {
 
-    try{
+    try {
         const res = yield call(signIn, data.credentials);
         const res_profile = yield call(userProfile, res);
         yield put({
@@ -23,7 +23,7 @@ export function* login(data){
     } catch (error) {
 
 
-        yield put ({
+        yield put({
             type: USER_ACTIONS.LOGIN_REJECTED,
             payload: {
                 error: createErrorString(error)
@@ -32,9 +32,9 @@ export function* login(data){
     }
 }
 
-export function* signUp(data){
+export function* signUp(data) {
 
-    try{
+    try {
         const res = yield call(register, data.credentials);
 
         yield call(browserHistory.push, '/signIn');
@@ -44,7 +44,7 @@ export function* signUp(data){
         })
     } catch (error) {
 
-        yield put ({
+        yield put({
             type: USER_ACTIONS.SIGNUP_REJECTED,
             payload: {
                 error: createErrorString(error)
@@ -55,9 +55,9 @@ export function* signUp(data){
 }
 
 
-function createErrorString(error){
+function createErrorString(error) {
 
-    let data =  _.map(error.response.data, (data, key) => {
+    let data = _.map(error.response.data, (data, key) => {
 
         const dataString = data.join(',')
         return `${key}: ${dataString}`

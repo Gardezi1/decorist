@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar} from 'react-bootstrap';
+import {Navbar} from 'react-bootstrap';
 
 export class AppContainer extends React.Component {
 
@@ -14,16 +14,16 @@ export class AppContainer extends React.Component {
         });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <Navbar inverse collapseOnSelect>
 
                     <Navbar.Header className="navBarHeader">
                         <Navbar.Brand>
-                            <span >Decorist</span>
+                            <span>Decorist</span>
                         </Navbar.Brand>
-                        <Navbar.Toggle />
+                        <Navbar.Toggle/>
                     </Navbar.Header>
                 </Navbar>;
                 <div className="container">

@@ -11,7 +11,7 @@ export const getAllFilms = (jwt_token, limit) => {
     }
 }
 
-export const updateFilm = (filmId,filmData, jwt_token) => {
+export const updateFilm = (filmId, filmData, jwt_token) => {
     return {
 
         type: FILM_ACTIONS.UPDATEFILMDETAIL,
@@ -29,7 +29,7 @@ export const deleteFilm = (filmId, jwt_token) => {
     }
 }
 
-export const addFilm= (data, jwt_token) => {
+export const addFilm = (data, jwt_token) => {
     return {
         type: FILM_ACTIONS.ADDFILM,
         data,

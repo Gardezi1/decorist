@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 import {
     deleteFilm,
     getAllFilms,
@@ -27,14 +27,14 @@ const mapStateToProps = (state, props) => {
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    getAllFilms : (jwt_token, limit) => {
+    getAllFilms: (jwt_token, limit) => {
         dispatch(getAllFilms(jwt_token, limit));
     },
     handleDelete: (id, jwt_token) => {
         dispatch(deleteFilm(id, jwt_token))
     },
     addFilm: (data, jwt_token) => {
-      dispatch(addFilm(data, jwt_token));
+        dispatch(addFilm(data, jwt_token));
     }
 })
 

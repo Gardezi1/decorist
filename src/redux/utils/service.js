@@ -12,14 +12,14 @@ export const signIn = (credentials) => {
 
     return axios({
         method: 'post',
-        url:`${user_api_url}accounts/login/`,
-        data:{
-                username: credentials.email,
-                password: credentials.password
+        url: `${user_api_url}accounts/login/`,
+        data: {
+            username: credentials.email,
+            password: credentials.password
         }
     })
         .then(response => response.data)
-        .catch(err =>{
+        .catch(err => {
             throw err;
         });
 }
@@ -33,17 +33,17 @@ export const register = (credentials) => {
 
     return axios({
         method: 'post',
-        url:`${user_api_url}accounts/signup/`,
-        data:{
+        url: `${user_api_url}accounts/signup/`,
+        data: {
             email: credentials.email,
             password1: credentials.password1,
             password2: credentials.password2
         }
     })
         .then(response => response.data)
-        .catch(err =>{
+        .catch(err => {
             throw err;
-    });
+        });
 }
 
 /**
@@ -55,35 +55,35 @@ export const userProfile = (jwt_token) => {
 
     return axios({
         method: 'get',
-        url:`${user_api_url}accounts/profile/`,
+        url: `${user_api_url}accounts/profile/`,
         headers: {
             'Authorization': `JWT ${jwt_token}`
         }
     })
-    .then(response => response.data)
-    .catch(err =>{
-        throw err;
-    });
+        .then(response => response.data)
+        .catch(err => {
+            throw err;
+        });
 }
 
 export const getAllFilmss = (jwt_token, limit) => {
     return axios({
         method: 'get',
-        url:`${film_api_url}films?limit=${limit}&offset=0`,
+        url: `${film_api_url}films?limit=${limit}&offset=0`,
         headers: {
             'Authorization': `JWT ${jwt_token}`
         }
     })
-    .then(response => response.data)
-    .catch(err =>{
-        throw err;
-    });
+        .then(response => response.data)
+        .catch(err => {
+            throw err;
+        });
 }
 
 export const updateFilmDetails = (filmId, filmData, jwt_token) => {
     return axios({
         method: 'put',
-        url:`${film_api_url}films/${filmId}`,
+        url: `${film_api_url}films/${filmId}`,
         headers: {
             'Authorization': `JWT ${jwt_token}`
         },
@@ -91,41 +91,41 @@ export const updateFilmDetails = (filmId, filmData, jwt_token) => {
             ...filmData
         }
     })
-    .then(response => response.data)
-    .catch(err =>{
-        throw err;
-    });
+        .then(response => response.data)
+        .catch(err => {
+            throw err;
+        });
 }
 
 export const deleteFilmDetails = (filmId, jwt_token) => {
 
     return axios({
         method: 'delete',
-        url:`${film_api_url}films/${filmId}`,
+        url: `${film_api_url}films/${filmId}`,
         headers: {
             'Authorization': `JWT ${jwt_token}`
         }
     })
-    .then(response => response.data)
-    .catch(err =>{
-        throw err;
-    });
+        .then(response => response.data)
+        .catch(err => {
+            throw err;
+        });
 }
 
 export const addANewFilm = (data, jwt_token) => {
 
     return axios({
         method: 'post',
-        url:`${film_api_url}films`,
+        url: `${film_api_url}films`,
         headers: {
             'Authorization': `JWT ${jwt_token}`
         },
-        data:{
+        data: {
             ...data
         }
     })
         .then(response => response.data)
-        .catch(err =>{
+        .catch(err => {
             throw err;
         });
 }
@@ -134,17 +134,17 @@ export const addMyFilmRating = (filmId, rating, jwt_token) => {
 
     return axios({
         method: 'post',
-        url:`${film_api_url}films/${filmId}/ratings/`,
+        url: `${film_api_url}films/${filmId}/ratings/`,
         headers: {
             'Authorization': `JWT ${jwt_token}`
         },
-        data:{
+        data: {
             film: filmId,
             score: rating
         }
     })
         .then(response => response.data)
-        .catch(err =>{
+        .catch(err => {
             throw err;
         });
 }

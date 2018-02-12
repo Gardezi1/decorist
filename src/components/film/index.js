@@ -1,60 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 import {Form, FormGroup, Col, Button, ControlLabel, FormControl, Navbar, NavItem, Nav} from 'react-bootstrap';
 import './index.css';
 import ReactLoading from 'react-loading';
-import  {FilmCreateModal}  from '../filmCreateModal'
+import {FilmCreateModal} from '../filmCreateModal'
 import InfiniteScroll from 'react-infinite-scroller';
 import ReactStars from 'react-stars'
 
-export class Film extends React.Component{
-    constructor( props){
-        super(props);
-        this.state = {
-            films:[],
-            film: [],
-            showCreateModal: false,
-            loading: false,
-            hasMoreItems: true
-
-        }
-    }
-
-    componentWillMount(){
-
-        // this.props.getAllFilms(this.props.jwt_token, limit);
-    }
-
+export class Film extends React.Component {
     handleDelete = (id) => {
 
         const {
             jwt_token
-        }  = this.props;
+        } = this.props;
         this.props.handleDelete(id, jwt_token)
     }
-
-    componentWillReceiveProps(nextProps){
-        if(nextProps.error !== '')
-            alert(nextProps.error);
-        if(nextProps.loading){
-            this.setState({
-                loading: true,
-                films: nextProps.films
-            });
-        }else{
-            this.setState({
-                loading: false,
-                films: nextProps.films
-            });
-        }
-    }
-
     handleModalToggle = () => {
-        this.setState((prevState) =>({
+        this.setState((prevState) => ({
             showCreateModal: !prevState.showCreateModal
         }))
     }
-
     addFilm = (data) => {
         const {jwt_token} = this.props;
         this.handleModalToggle();
@@ -62,14 +27,11 @@ export class Film extends React.Component{
         this.props.addFilm(
             data,
             jwt_token
-
         )
     }
-
     loadItems = (page_number) => {
-        this.props.getAllFilms(this.props.jwt_token, page_number*10);
+        this.props.getAllFilms(this.props.jwt_token, page_number * 10);
     }
-
     renderFilmsList = () => {
         const {
             films,
@@ -96,11 +58,11 @@ export class Film extends React.Component{
                         </div>
                         <div className="panel-body text-center nopadding">
                             <Link to={{
-                                    pathname: "filmDetail",
-                                    state: {
-                                        params: data
-                                    }
-                                }} >
+                                pathname: "filmDetail",
+                                state: {
+                                    params: data
+                                }
+                            }}>
                                 <img src={data.img_url}
                                      width="200px" height="200px"/>
                             </Link>
@@ -115,7 +77,7 @@ export class Film extends React.Component{
                                         half={false}
                                         edit={false}
                                         value={data.average_score}
-                                        /></span>
+                                    /></span>
                                 </div>
 
                                 <div className="btn-group btn-group-sm pull-right">
@@ -131,7 +93,9 @@ export class Film extends React.Component{
                                     >
                                         <span className="fa fa-eye"></span>
                                     </Link>
-                                    <Button onClick={(e) =>{this.handleDelete(data.id)}} className="btn-group btn-group-sm pull-right">
+                                    <Button onClick={(e) => {
+                                        this.handleDelete(data.id)
+                                    }} className="btn-group btn-group-sm pull-right">
                                         <span className="fa fa-trash"></span>
                                     </Button>
                                 </div>
@@ -139,12 +103,13 @@ export class Film extends React.Component{
                         </div>
                     </div>
                 </div>
-            )})
+            )
+        })
         return (
-            <div >
-                <Button className="btn btn-success" onClick={this.handleModalToggle} >Add Film</Button>
-                <br />
-                <br />
+            <div>
+                <Button className="btn btn-success" onClick={this.handleModalToggle}>Add Film</Button>
+                <br/>
+                <br/>
                 <InfiniteScroll
                     pageStart={0}
                     loadMore={this.loadItems}
@@ -156,7 +121,40 @@ export class Film extends React.Component{
         );
     }
 
-    render(){
+    constructor(props) {
+        super(props);
+        this.state = {
+            films: [],
+            film: [],
+            showCreateModal: false,
+            loading: false,
+            hasMoreItems: true
+
+        }
+    }
+
+    componentWillMount() {
+
+        // this.props.getAllFilms(this.props.jwt_token, limit);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.error !== '')
+            alert(nextProps.error);
+        if (nextProps.loading) {
+            this.setState({
+                loading: true,
+                films: nextProps.films
+            });
+        } else {
+            this.setState({
+                loading: false,
+                films: nextProps.films
+            });
+        }
+    }
+
+    render() {
 
         const {
             films,
@@ -168,11 +166,12 @@ export class Film extends React.Component{
             <div>
 
                 {
-                     this.renderFilmsList()
+                    this.renderFilmsList()
                 }
 
                 {
-                    showCreateModal && <FilmCreateModal show={showCreateModal} handleClose={this.handleModalToggle} onAdd={this.addFilm}/>
+                    showCreateModal &&
+                    <FilmCreateModal show={showCreateModal} handleClose={this.handleModalToggle} onAdd={this.addFilm}/>
                 }
 
 
