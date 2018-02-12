@@ -66,13 +66,12 @@ export const userProfile = (jwt_token) => {
     });
 }
 
-export const getAllFilmss = (jwt_token) => {
-
+export const getAllFilmss = (jwt_token, limit) => {
     return axios({
         method: 'get',
-        url:`${film_api_url}films?limit=2000&offset=0`,
+        url:`${film_api_url}films?limit=${limit}&offset=0`,
         headers: {
-            'Authorization': `JWT ${jwt_token.jwt_token}`
+            'Authorization': `JWT ${jwt_token}`
         }
     })
     .then(response => response.data)

@@ -3,10 +3,13 @@ import {
 } from '../actions/film_actions'
 
 
-export const getAllFilms = (jwt_token) => ({
-    type:FILM_ACTIONS.GETALLFILMS,
-    jwt_token
-})
+export const getAllFilms = (jwt_token, limit) => {
+    return {
+        type: FILM_ACTIONS.GETALLFILMS,
+        jwt_token,
+        limit
+    }
+}
 
 export const updateFilm = (filmId,filmData, jwt_token) => {
     return {

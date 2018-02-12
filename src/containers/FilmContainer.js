@@ -27,8 +27,8 @@ const mapStateToProps = (state, props) => {
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    getAllFilms : jwt_token => {
-        dispatch(getAllFilms(jwt_token));
+    getAllFilms : (jwt_token, limit) => {
+        dispatch(getAllFilms(jwt_token, limit));
     },
     handleDelete: (id, jwt_token) => {
         dispatch(deleteFilm(id, jwt_token))

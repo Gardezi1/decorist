@@ -4,6 +4,7 @@ import {Form, FormGroup, Col, Button, ControlLabel, FormControl, Navbar, NavItem
 import './index.css';
 import ReactLoading from 'react-loading';
 import  {FilmCreateModal}  from '../filmCreateModal'
+import InfiniteScroll from 'react-infinite-scroller';
 
 export class Film extends React.Component{
     constructor( props){
@@ -12,14 +13,15 @@ export class Film extends React.Component{
             films:[],
             film: [],
             showCreateModal: false,
-            loading: false
+            loading: false,
+            hasMoreItems: true
 
         }
     }
 
     componentWillMount(){
 
-        this.props.getAllFilms(this.props.jwt_token);
+        // this.props.getAllFilms(this.props.jwt_token, limit);
     }
 
     handleDelete = (id) => {
@@ -61,6 +63,10 @@ export class Film extends React.Component{
             jwt_token
 
         )
+    }
+
+    loadItems = (page_number) => {
+        this.props.getAllFilms(this.props.jwt_token, page_number*10);
     }
 
     renderFilmsList = () => {
@@ -127,7 +133,13 @@ export class Film extends React.Component{
                 <Button className="btn btn-success" onClick={this.handleModalToggle} >Add Film</Button>
                 <br />
                 <br />
-             {listItems}
+                <InfiniteScroll
+                    pageStart={0}
+                    loadMore={this.loadItems}
+                    hasMore={this.state.hasMoreItems}
+                    loader={<div className="loader" key={0}>Loading ...</div>}>
+                    {listItems}
+                </InfiniteScroll>
             </div>
         );
     }
@@ -142,18 +154,13 @@ export class Film extends React.Component{
 
         return (
             <div>
+
                 {
-                    loading && <ReactLoading type="balls" color="#444" />
+                     this.renderFilmsList()
                 }
 
                 {
-                    !loading && this.renderFilmsList()
-                }
-
-                {
-
                     showCreateModal && <FilmCreateModal show={showCreateModal} handleClose={this.handleModalToggle} onAdd={this.addFilm}/>
-
                 }
 
 

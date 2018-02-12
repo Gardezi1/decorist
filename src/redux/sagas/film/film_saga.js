@@ -9,10 +9,9 @@ import {
 } from "../../utils/service";
 import _ from "lodash";
 
-export function* getAllFilms(jwt_token){
-
+export function* getAllFilms({jwt_token, limit}){
     try{
-        const res = yield call(getAllFilmss, jwt_token);
+        const res = yield call(getAllFilmss, jwt_token, limit);
         yield put({
             type: FILM_ACTIONS.GETALLFILMS_RESOLVED,
             payload: {
