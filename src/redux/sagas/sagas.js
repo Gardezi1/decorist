@@ -10,7 +10,8 @@ import {
 
 
 import {
-	getAllFilms
+	getAllFilms,
+	updateFilm
 } from './film/film_saga'
 
 
@@ -18,6 +19,7 @@ export function* sagas(){
 	yield takeEvery(USER_ACTIONS.LOGIN, login);
 	yield takeEvery(USER_ACTIONS.SIGNUP, signUp);
 	yield takeEvery(FILM_ACTIONS.GETALLFILMS, getAllFilms);
+	yield takeEvery(FILM_ACTIONS.UPDATEFILMDETAIL, updateFilm);
 }
 
 

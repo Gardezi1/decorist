@@ -34,6 +34,28 @@ export const films = (state= DEFAULT_FILM_STATE, actions) => {
                 error: actions.payload.error
             }
             break;
+        case FILM_ACTIONS.UPDATEFILMDETAIL:
+            return {
+                ...state,
+                loading: true,
+                error: ''
+            }
+            break;
+        case FILM_ACTIONS.UPDATEFILMDETAIL_RESOLVED:
+
+            return {
+                ...state,
+                loading:false,
+                error: ''
+            }
+            break;
+        case FILM_ACTIONS.UPDATEILMDETAIL_REJECTED:
+            return {
+                ...state,
+                loading: false,
+                error: actions.payload.error
+            }
+            break;
         default:
             return {
                 ...state

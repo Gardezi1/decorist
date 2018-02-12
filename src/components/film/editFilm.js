@@ -49,6 +49,24 @@ export class FilmDetail extends React.Component{
         })
     }
 
+    updateFilm = (e) => {
+        const{
+            film
+        } = this.state;
+        const {
+            jwt_token
+        } = this.props;
+        this.props.updateFilmData(
+            film.id,
+            {
+                title: film.title,
+                description: film.description,
+                year: film.year
+            },
+            jwt_token
+        )
+    }
+
     componentWillMount(){
         this.setState({
             film: this.props.location.state.params
@@ -57,6 +75,17 @@ export class FilmDetail extends React.Component{
 
     componentWillReceiveProps(nextProps){
 
+        if(nextProps.loading === false) {
+            alert("Updated");
+            this.setState({
+                edit: false
+            })
+            this.props.router.push('/home')
+        }
+
+        if(nextProps.error !== '' && !nextProps.laoding ){
+            alert(nextProps.error);
+        }
     }
 
     render = () =>{

@@ -80,3 +80,20 @@ export const getAllFilmss = (jwt_token) => {
         throw err;
     });
 }
+
+export const updateFilmDetails = (filmId, filmData, jwt_token) => {
+    return axios({
+        method: 'put',
+        url:`${film_api_url}films/${filmId}`,
+        headers: {
+            'Authorization': `JWT ${jwt_token}`
+        },
+        data: {
+            ...filmData
+        }
+    })
+    .then(response => response.data)
+    .catch(err =>{
+        throw err;
+    });
+}

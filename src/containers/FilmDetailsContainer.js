@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import {
-
+    updateFilm
 } from '../redux/action_creators/film_action_creators';
 import {FilmDetail} from "../components/film/editFilm";
 
@@ -11,21 +11,24 @@ const mapStateToProps = (state, props) => {
     } = state.user;
 
     const {
-        film,
         error,
+        loading
     } = state.films
     return {
         ...props,
-        film,
         error,
+        loading,
         jwt_token,
     }
 }
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    updateFilm : (filmId ,filmData, jwt_token)=> {
-        // dispatch(updateFilm(filmId,filmData, jwt_token));
+    updateFilmData : (filmId ,filmData, jwt_token)=> {
+        console.log(filmId);
+        console.log(filmData);
+        console.log(jwt_token);
+        dispatch(updateFilm(filmId,filmData, jwt_token));
     },
 })
 

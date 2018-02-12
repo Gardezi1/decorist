@@ -2,7 +2,8 @@ import {FILM_ACTIONS} from "../../actions/film_actions";
 import {put, call} from "redux-saga/effects";
 import { browserHistory } from 'react-router';
 import {
-    getAllFilmss
+    getAllFilmss,
+    updateFilmDetails
 } from "../../utils/service";
 import _ from "lodash";
 
@@ -21,6 +22,27 @@ export function* getAllFilms(jwt_token){
 
         yield put ({
             type: FILM_ACTIONS.GETALLFILMS_REJECTED,
+            payload: {
+                error: createErrorString(error)
+            }
+        })
+    }
+}
+
+export function* updateFilm({filmId, filmData, jwt_token}){
+    try{
+        const res = yield call(updateFilmDetails, filmId, filmData, jwt_token);
+        yield put({
+            type: FILM_ACTIONS.UPDATEFILMDETAIL_RESOLVED,
+            payload: {
+                films: res,
+            }
+        })
+    } catch (error) {
+
+
+        yield put ({
+            type: FILM_ACTIONS.UPDATEILMDETAIL_REJECTED,
             payload: {
                 error: createErrorString(error)
             }
