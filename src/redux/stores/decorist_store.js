@@ -1,4 +1,4 @@
-import {createStore, compose, applyMiddleware} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import createSagaMiddleware from 'redux-saga';
 import decoristReducers from '../reducers/decorist_reducer'
 
@@ -24,7 +24,7 @@ const localStorageMiddleware = ({getState}) => {
 
 const reHydrateStore = () => {
 
-    if (localStorage.getItem('applicationState') !== null){
+    if (localStorage.getItem('applicationState') !== null) {
         return JSON.parse(localStorage.getItem('applicationState')) // re-hydrate the store
 
     }

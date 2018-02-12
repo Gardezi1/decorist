@@ -1,6 +1,5 @@
 import {FILM_ACTIONS} from "../../actions/film_actions";
 import {put, call} from "redux-saga/effects";
-import {browserHistory} from 'react-router';
 import {
     getAllFilmss,
     updateFilmDetails,

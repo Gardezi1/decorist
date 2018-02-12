@@ -23,7 +23,7 @@ export const user = (state = DEFAULT_USER_STATE, action) => {
                 loading: true,
                 error: ''
             };
-            break;
+
         case USER_ACTIONS.LOGIN_RESOLVED:
             return {
                 ...state,
@@ -32,28 +32,28 @@ export const user = (state = DEFAULT_USER_STATE, action) => {
                 loading: false,
                 error: ''
             };
-            break;
+
         case USER_ACTIONS.LOGIN_REJECTED:
             return {
                 ...state,
                 loading: false,
                 error: action.payload.error
             };
-            break;
+
         case USER_ACTIONS.SIGNUP:
             return {
                 ...state,
                 loading: true,
                 error: ''
             };
-            break;
+
         case USER_ACTIONS.SIGNUP_RESOLVED:
             return {
                 ...state,
                 loading: false,
                 error: ''
             };
-            break;
+
         case USER_ACTIONS.SIGNUP_REJECTED:
 
             return {
@@ -62,28 +62,28 @@ export const user = (state = DEFAULT_USER_STATE, action) => {
                 error: action.payload.error
             };
 
-            break;
+
         case USER_ACTIONS.LOGOUT:
             return {
                 ...DEFAULT_USER_STATE,
                 loading: true,
                 error: ''
             };
-            break;
+
         case USER_ACTIONS.LOGOUT_RESOLVED:
             return {
                 ...DEFAULT_USER_STATE,
                 loading: false,
                 error: ''
             };
-            break;
+
         case USER_ACTIONS.LOGOUT_REJECTED:
             return {
                 ...state,
                 loading: false,
                 error: action.payload.error
             };
-            break;
+
         default:
             return {
                 ...state

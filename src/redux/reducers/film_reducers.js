@@ -20,7 +20,7 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
                 error: '',
                 action: "get"
             }
-            break;
+
         case FILM_ACTIONS.GETALLFILMS_RESOLVED:
             return {
                 ...state,
@@ -29,7 +29,7 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
                 films: actions.payload.films.results,
                 action: "get_resolved"
             }
-            break;
+
         case FILM_ACTIONS.GETALLFILMS_REJECTED:
             return {
                 ...state,
@@ -37,7 +37,7 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
                 error: actions.payload.error,
                 action: "get_rejected"
             }
-            break;
+
         case FILM_ACTIONS.UPDATEFILMDETAIL:
             return {
                 ...state,
@@ -45,7 +45,7 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
                 error: '',
                 action: "update"
             }
-            break;
+
         case FILM_ACTIONS.UPDATEFILMDETAIL_RESOLVED:
 
             return {
@@ -54,7 +54,7 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
                 error: '',
                 action: "update_resolved"
             }
-            break;
+
         case FILM_ACTIONS.UPDATEILMDETAIL_REJECTED:
             return {
                 ...state,
@@ -62,7 +62,7 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
                 error: actions.payload.error,
                 action: "update_rejected"
             }
-            break;
+
         case FILM_ACTIONS.DELETEFILM_RESOLVED:
             return {
                 ...state,
@@ -70,7 +70,7 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
                 error: '',
                 action: "delete_resolved"
             }
-            break;
+
         case FILM_ACTIONS.DELETEFILM_REJECTED:
             return {
                 ...state,
@@ -78,7 +78,7 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
                 error: actions.payload.error,
                 action: "delete_rejected"
             }
-            break;
+
         case FILM_ACTIONS.ADDFILM:
             return {
                 ...state,
@@ -86,7 +86,7 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
                 error: '',
                 action: "add"
             }
-            break;
+
         case FILM_ACTIONS.ADDFILM_RESOLVED:
 
             return {
@@ -95,7 +95,7 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
                 error: '',
                 action: "add_resolved"
             }
-            break;
+
         case FILM_ACTIONS.ADDFILM_REJECTED:
             return {
                 ...state,
@@ -103,7 +103,7 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
                 error: actions.payload.error,
                 action: "add_rejected"
             }
-            break;
+
         case FILM_ACTIONS.ADDRATING:
             return {
                 ...state,
@@ -152,7 +152,7 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
             return {
                 ...state
             }
-            break;
+
 
     }
 }

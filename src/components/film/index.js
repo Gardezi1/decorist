@@ -1,8 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {Form, FormGroup, Col, Button, ControlLabel, FormControl, Navbar, NavItem, Nav} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import './index.css';
-import ReactLoading from 'react-loading';
 import {FilmCreateModal} from '../filmCreateModal'
 import InfiniteScroll from 'react-infinite-scroller';
 import ReactStars from 'react-stars'
@@ -38,7 +37,6 @@ export class Film extends React.Component {
     renderFilmsList = () => {
         const {
             films,
-            loading,
             hasMore
         } = this.state;
 

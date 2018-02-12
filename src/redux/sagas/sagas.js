@@ -8,7 +8,8 @@ import {FILM_ACTIONS} from '../actions/film_actions';
 
 import {
     login,
-    signUp
+    signUp,
+    logingOut
 } from './user/user_saga';
 
 
@@ -19,7 +20,6 @@ import {
     addFilm,
     addFilmRating,
     filterFilmResult,
-    logingOut
 } from './film/film_saga'
 
 

@@ -2,3 +2,7 @@
     position: absolute;
     left: 50%;
 }
+
+.navBarLogoutButton {
+    margin-top: .5%;
+}

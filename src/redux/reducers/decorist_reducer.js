@@ -8,9 +8,17 @@ import {
 } from './film_reducers'
 
 
-export const decoristReducers = combineReducers({
+const appReducer = combineReducers({
     user,
     films
 });
+
+const decoristReducers = (state, action) => {
+    if (action.type === 'LOGOUT') {
+        state = undefined
+    }
+
+    return appReducer(state, action)
+}
 
 export default decoristReducers;
