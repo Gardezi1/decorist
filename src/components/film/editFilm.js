@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import './index.css';
-import ReactLoading from 'react-loading';
+import ReactStars from 'react-stars'
 
 export class FilmDetail extends React.Component{
     constructor( props){
@@ -67,6 +67,10 @@ export class FilmDetail extends React.Component{
         )
     }
 
+    ratingChanged = (ratingChanged) => {
+        console.log(ratingChanged);
+    }
+
     componentWillMount(){
         this.setState({
             film: this.props.location.state.params
@@ -105,7 +109,18 @@ export class FilmDetail extends React.Component{
                     </div>
                     <div className="col-xs-12 col-sm-9">
                         <div className="col-xs-12 col-sm-9">
-                            <h1 className="nomargin-top">{film.title}</h1>
+                            <h1 className="nomargin-top">{film.title}
+                                <span>
+                                    <ReactStars
+                                        count={10}
+                                        onChange={this.ratingChanged}
+                                        size={24}
+                                        color2={'#ffd700'}
+                                        half={false}
+                                        value={film.average_score}
+                                />
+                                </span>
+                            </h1>
                             <fieldset>
 
                                 <label htmlFor="name">Name</label>
@@ -120,7 +135,7 @@ export class FilmDetail extends React.Component{
 
                                 <label htmlFor="manufacturer">Description</label>
                                 <input type="text"
-                                    value={film.description}
+                                    value={film.description===null ? '':film.description}
                                     id="description"
                                     className="form-control"
                                     onChange={this.handleDescriptionChange}
