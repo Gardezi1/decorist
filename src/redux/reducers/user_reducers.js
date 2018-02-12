@@ -65,14 +65,14 @@ export const user = (state = DEFAULT_USER_STATE, action) => {
             break;
         case USER_ACTIONS.LOGOUT:
             return {
-                ...state,
+                ...DEFAULT_USER_STATE,
                 loading: true,
                 error: ''
             };
             break;
         case USER_ACTIONS.LOGOUT_RESOLVED:
             return {
-                ...state,
+                ...DEFAULT_USER_STATE,
                 loading: false,
                 error: ''
             };

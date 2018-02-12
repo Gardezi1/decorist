@@ -54,6 +54,27 @@ export function* signUp(data) {
     }
 }
 
+export function* logingOut(data) {
+
+    try {
+        // const res = yield call(register, data.credentials);
+
+        yield call(browserHistory.push, '/signIn');
+        yield put({
+            type: USER_ACTIONS.SIGNUP_RESOLVED,
+            // payload: res
+        })
+    } catch (error) {
+
+        yield put({
+            type: USER_ACTIONS.SIGNUP_REJECTED,
+            payload: {
+                error: createErrorString(error)
+
+            }
+        })
+    }
+}
 
 function createErrorString(error) {
 
