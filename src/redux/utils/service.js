@@ -70,7 +70,7 @@ export const getAllFilmss = (jwt_token) => {
 
     return axios({
         method: 'get',
-        url:`${film_api_url}films`,
+        url:`${film_api_url}films?limit=2000&offset=0`,
         headers: {
             'Authorization': `JWT ${jwt_token.jwt_token}`
         }
@@ -111,4 +111,22 @@ export const deleteFilmDetails = (filmId, jwt_token) => {
     .catch(err =>{
         throw err;
     });
+}
+
+export const addANewFilm = (data, jwt_token) => {
+
+    return axios({
+        method: 'post',
+        url:`${film_api_url}films`,
+        headers: {
+            'Authorization': `JWT ${jwt_token}`
+        },
+        data:{
+            ...data
+        }
+    })
+        .then(response => response.data)
+        .catch(err =>{
+            throw err;
+        });
 }

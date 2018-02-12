@@ -25,3 +25,11 @@ export const deleteFilm = (filmId, jwt_token) => {
         jwt_token
     }
 }
+
+export const addFilm= (data, jwt_token) => {
+    return {
+        type: FILM_ACTIONS.ADDFILM,
+        data,
+        jwt_token
+    }
+}

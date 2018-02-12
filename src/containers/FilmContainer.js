@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import {
     deleteFilm,
-    getAllFilms
+    getAllFilms,
+    addFilm
 } from '../redux/action_creators/film_action_creators';
 import {Film} from "../components/film";
 
@@ -31,6 +32,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     },
     handleDelete: (id, jwt_token) => {
         dispatch(deleteFilm(id, jwt_token))
+    },
+    addFilm: (data, jwt_token) => {
+      dispatch(addFilm(data, jwt_token));
     }
 })
 

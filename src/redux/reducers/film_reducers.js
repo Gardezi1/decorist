@@ -79,6 +79,31 @@ export const films = (state= DEFAULT_FILM_STATE, actions) => {
                 action: "delete_rejected"
             }
             break;
+        case FILM_ACTIONS.ADDFILM:
+            return {
+                ...state,
+                loading: true,
+                error: '',
+                action: "add"
+            }
+            break;
+        case FILM_ACTIONS.ADDFILM_RESOLVED:
+
+            return {
+                ...state,
+                loading:false,
+                error: '',
+                action: "add_resolved"
+            }
+            break;
+        case FILM_ACTIONS.ADDFILM_REJECTED:
+            return {
+                ...state,
+                loading: false,
+                error: actions.payload.error,
+                action: "add_rejected"
+            }
+            break;
         default:
             return {
                 ...state

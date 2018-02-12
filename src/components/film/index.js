@@ -3,14 +3,15 @@ import { Link } from 'react-router';
 import {Form, FormGroup, Col, Button, ControlLabel, FormControl, Navbar, NavItem, Nav} from 'react-bootstrap';
 import './index.css';
 import ReactLoading from 'react-loading';
-import {FilmDetail} from "./editFilm";
+import  {FilmCreateModal}  from '../filmCreateModal'
+
 export class Film extends React.Component{
     constructor( props){
         super(props);
         this.state = {
             films:[],
             film: [],
-            showSearchModal: false,
+            showCreateModal: false,
             loading: false
 
         }
@@ -43,12 +44,29 @@ export class Film extends React.Component{
                 films: nextProps.films
             });
         }
+    }
 
+    handleModalToggle = () => {
+        this.setState((prevState) =>({
+            showCreateModal: !prevState.showCreateModal
+        }))
+    }
+
+    addFilm = (data) => {
+        const {jwt_token} = this.props;
+        this.handleModalToggle();
+
+        this.props.addFilm(
+            data,
+            jwt_token
+
+        )
     }
 
     renderFilmsList = () => {
         const {
-            films
+            films,
+            loading
         } = this.state;
 
         let listItems = films.map((data, idx) => {
@@ -104,18 +122,24 @@ export class Film extends React.Component{
                     </div>
                 </div>
             )})
-        return listItems;
+        return (
+            <div >
+                <Button className="btn btn-success" onClick={this.handleModalToggle} >Add Film</Button>
+                <br />
+                <br />
+             {listItems}
+            </div>
+        );
     }
 
     render(){
 
         const {
             films,
-            loading
+            loading,
+            showCreateModal
         } = this.state;
-        const {
-            showSearchModal
-        } = this.state
+
         return (
             <div>
                 {
@@ -125,6 +149,13 @@ export class Film extends React.Component{
                 {
                     !loading && this.renderFilmsList()
                 }
+
+                {
+
+                    showCreateModal && <FilmCreateModal show={showCreateModal} handleClose={this.handleModalToggle} onAdd={this.addFilm}/>
+
+                }
+
 
             </div>
         );

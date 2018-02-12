@@ -1,10 +1,19 @@
 import React from 'react'
-import {DESCRIPTION, LIMIT, MAXYEAR, MINYEAR, SEARCH, TITLE} from '../../constants/film';
+import {DESCRIPTION, YEAR, TITLE} from '../../constants/film';
 
 import {Form, FormGroup, Button, ControlLabel, FormControl, Modal, Col} from 'react-bootstrap';
 import './index.css';
 
-export class FilmFilterModal extends React.Component{
+export class FilmCreateModal extends React.Component{
+
+    createFilm = () => {
+        let dataArray = {
+            title: this.inputName.value,
+            description: this.inputDescription.value,
+            year: this.inputYear.value
+        }
+        this.props.onAdd(dataArray);
+    }
 
 
     render(){
@@ -16,30 +25,13 @@ export class FilmFilterModal extends React.Component{
                 </Modal.Header>
                 <Modal.Body>
                     <Form  horizontal>
-                        <FormGroup controlId="formHorizontalMinYear">
-                            <Col componentClass={ControlLabel} sm={2}>
-                                {MINYEAR}
-                            </Col>
-                            <Col sm={10}>
-                                <FormControl type="text" placeholder={MINYEAR} />
-                            </Col>
-                        </FormGroup>
-
-                        <FormGroup controlId="formHorizontalMaxYear">
-                            <Col componentClass={ControlLabel} sm={2}>
-                                {MAXYEAR}
-                            </Col>
-                            <Col sm={10}>
-                                <FormControl type="text" placeholder={MAXYEAR} />
-                            </Col>
-                        </FormGroup>
 
                         <FormGroup controlId="formHorizontalTitle">
                             <Col componentClass={ControlLabel} sm={2}>
                                 {TITLE}
                             </Col>
                             <Col sm={10}>
-                                <FormControl type="text" placeholder={TITLE} />
+                                <FormControl type="text" placeholder={TITLE} inputRef={inputName => {this.inputName = inputName}}/>
                             </Col>
                         </FormGroup>
 
@@ -48,28 +40,28 @@ export class FilmFilterModal extends React.Component{
                                 {DESCRIPTION}
                             </Col>
                             <Col sm={10}>
-                                <FormControl type="text" placeholder={DESCRIPTION} />
+                                <FormControl type="text" placeholder={DESCRIPTION} inputRef={inputDescription => {this.inputDescription= inputDescription}}/>
                             </Col>
                         </FormGroup>
 
                         <FormGroup controlId="formHorizontalLimit">
                             <Col componentClass={ControlLabel} sm={2}>
-                                {LIMIT}
+                                {YEAR}
                             </Col>
                             <Col sm={10}>
-                                <FormControl type="text" placeholder={LIMIT} />
+                                <FormControl type="text" placeholder={YEAR} inputRef={inputYear => {this.inputYear= inputYear}}/>
                             </Col>
                         </FormGroup>
 
                         <FormGroup>
                             <Col smOffset={2} sm={10} className="alignModalButton">
-                                <Button bsStyle="primary"  onClick={this.filterFilms}>{SEARCH}</Button>
+                                <Button bsStyle="primary"  onClick={this.createFilm}>Create</Button>
                             </Col>
                         </FormGroup>
                     </Form>;
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={this.props.handleSearch}>Search</Button>
+
                 </Modal.Footer>
             </Modal>
         )
