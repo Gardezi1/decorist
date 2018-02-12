@@ -102,12 +102,12 @@ export class SignUp extends React.Component {
                     <FormGroup>
                         <Col smOffset={2} sm={10}>
                             <Button type="submit" onClick={this.handleSubmit}
-                                    bsClass="btn centerAlignSignUp">{SIGNUP}</Button>
+                                    bsClass="btn centerAlignSignUp btn-success">{SIGNUP}</Button>
                         </Col>
                     </FormGroup>
                 </Form>
                 <br/>
-                <Link to="signIn" className="centerAlignSignInText">{LOGIN}</Link>
+                <Link to="signIn" className="centerAlignSignInText btn btn-info">{LOGIN}</Link>
             </div>
         );
     }
