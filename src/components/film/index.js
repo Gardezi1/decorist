@@ -77,7 +77,7 @@ export class Film extends React.Component{
 
         let listItems = films.map((data, idx) => {
             return (
-                <div key={idx} className="col-sm-6 col-md-3">
+                <div key={idx} className="col-sm-5 col-md-5">
                     <div className="panel panel-default" key={idx}>
                         <div className="panel-heading">
                             <h4 className="panel-title">
