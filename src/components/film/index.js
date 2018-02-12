@@ -9,6 +9,28 @@ import ReactStars from 'react-stars'
 
 export class Film extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            films: [],
+            film: [],
+            showCreateModal: false,
+            loading: false,
+            hasMoreItems: true,
+            title: '',
+            description: '',
+            min_year: '',
+            max_year: '',
+            hasMore: true
+
+        }
+    }
+
+    componentWillMount() {
+
+        // this.props.getAllFilms(this.props.jwt_token, limit);
+    }
+
     handleDelete = (id) => {
 
         const {
@@ -31,13 +53,15 @@ export class Film extends React.Component {
         )
     }
     loadItems = (page_number) => {
+        
         const queryStringData = this.makeFilterQueryString();
         this.props.getAllFilms(this.props.jwt_token, page_number * 10, queryStringData);
     }
     renderFilmsList = () => {
         const {
             films,
-            loading
+            loading,
+            hasMore
         } = this.state;
 
         let listItems = films.map((data, idx) => {
@@ -114,7 +138,7 @@ export class Film extends React.Component {
                 <InfiniteScroll
                     pageStart={0}
                     loadMore={this.loadItems}
-                    hasMore={this.state.hasMoreItems}
+                    hasMore={hasMore}
                     loader={<div className="loader" key={0}>Loading ...</div>}>
                     {listItems}
                 </InfiniteScroll>
@@ -122,30 +146,30 @@ export class Film extends React.Component {
         );
     }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            films: [],
-            film: [],
-            showCreateModal: false,
-            loading: false,
-            hasMoreItems: true,
-            title: '',
-            description: '',
-            min_year: '',
-            max_year: ''
-
+    arraysEqual = (arr1, arr2) => {
+        if(arr1.length !== arr2.length)
+            return false;
+        for(var i = arr1.length; i--;) {
+            if(arr1[i] !== arr2[i])
+                return false;
         }
-    }
 
-    componentWillMount() {
-
-        // this.props.getAllFilms(this.props.jwt_token, limit);
+        return true;
     }
 
     componentWillReceiveProps(nextProps) {
+        if(this.arraysEqual(nextProps.films, this.state.films))
+            this.setState({
+                hasMore: false
+            })
+        else
+             this.setState({
+                hasMore: true
+            })
         if (nextProps.error !== '')
             alert(nextProps.error);
+
+        if(this.arraysEqual)
         if (nextProps.loading) {
             this.setState({
                 loading: true,
