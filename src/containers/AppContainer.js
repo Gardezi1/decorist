@@ -36,13 +36,6 @@ export class AppContainer extends React.Component {
                         </Navbar.Brand>
                         <Navbar.Toggle/>
                     </Navbar.Header>
-                    {this.showLogoutLink() &&
-                    <Nav pullRight>
-                        <Link eventKey={1} href="#">
-                            Link Right
-                        </Link>
-                    </Nav>
-                    }
                 </Navbar>;
                 <div className="container">
                     {this.renderChildrenWithProps()}
