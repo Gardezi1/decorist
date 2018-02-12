@@ -125,6 +125,29 @@ export const films = (state = DEFAULT_FILM_STATE, actions) => {
                 error: actions.payload.error,
                 action: "addrating_rejected"
             }
+        case FILM_ACTIONS.FILTERRESULT:
+            return {
+                ...state,
+                loading: true,
+                error: '',
+                action: "filterresult"
+            }
+        case FILM_ACTIONS.FILTERRESULT_RESOLVED:
+        
+            return {
+                ...state,
+                loading: false,
+                error: '',
+                films: actions.payload.films.results,     
+                action: "filterresult_resolved"
+            }
+        case FILM_ACTIONS.FILTERRESULT_REJECTED:
+            return {
+                ...state,
+                loading: false,
+                error: actions.payload.error,
+                action: "filterresult_rejected"
+            }    
         default:
             return {
                 ...state

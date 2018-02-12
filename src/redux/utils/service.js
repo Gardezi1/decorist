@@ -66,10 +66,11 @@ export const userProfile = (jwt_token) => {
         });
 }
 
-export const getAllFilmss = (jwt_token, limit) => {
+export const getAllFilmss = (jwt_token, limit, queryStringData) => {
+    console.log(`${film_api_url}films?limit=${limit}&offset=0&${queryStringData}`);
     return axios({
         method: 'get',
-        url: `${film_api_url}films?limit=${limit}&offset=0`,
+        url: `${film_api_url}films?limit=${limit}&offset=0&${queryStringData}`,
         headers: {
             'Authorization': `JWT ${jwt_token}`
         }
@@ -147,4 +148,24 @@ export const addMyFilmRating = (filmId, rating, jwt_token) => {
         .catch(err => {
             throw err;
         });
+}
+
+
+
+export const filterFilms = (queryString, jwt_token) => {
+    
+
+    return axios({
+        method: 'get',
+        url: `${film_api_url}films?${queryString}`,
+        headers: {
+            'Authorization': `JWT ${jwt_token}`
+        }
+    })
+        .then(response => response.data)
+        .catch(err => {
+            throw err;
+        });
+
+
 }

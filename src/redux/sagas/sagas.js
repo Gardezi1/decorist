@@ -17,7 +17,8 @@ import {
     updateFilm,
     deleteFilm,
     addFilm,
-    addFilmRating
+    addFilmRating,
+    filterFilmResult
 } from './film/film_saga'
 
 
@@ -29,6 +30,7 @@ export function* sagas() {
     yield takeEvery(FILM_ACTIONS.DELETEFILM, deleteFilm);
     yield takeEvery(FILM_ACTIONS.ADDFILM, addFilm);
     yield takeEvery(FILM_ACTIONS.ADDRATING, addFilmRating);
+    yield takeEvery(FILM_ACTIONS.FILTERRESULT, filterFilmResult);
 }
 
 

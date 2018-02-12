@@ -3,11 +3,12 @@ import {
 } from '../actions/film_actions'
 
 
-export const getAllFilms = (jwt_token, limit) => {
+export const getAllFilms = (jwt_token, limit, queryStringData) => {
     return {
         type: FILM_ACTIONS.GETALLFILMS,
         jwt_token,
-        limit
+        limit,
+        queryStringData
     }
 }
 
@@ -42,6 +43,14 @@ export const addRating = (filmId, rating, jwt_token) => {
         type: FILM_ACTIONS.ADDRATING,
         filmId,
         rating,
+        jwt_token
+    }
+}
+
+export const filterResult = (queryStringData, jwt_token) => {
+    return {
+        type: FILM_ACTIONS.FILTERRESULT,
+        queryStringData,
         jwt_token
     }
 }

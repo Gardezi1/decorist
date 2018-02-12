@@ -6,13 +6,14 @@ import {
     updateFilmDetails,
     deleteFilmDetails,
     addANewFilm,
-    addMyFilmRating
+    addMyFilmRating,
+    filterFilms
 } from "../../utils/service";
 import _ from "lodash";
 
-export function* getAllFilms({jwt_token, limit}) {
+export function* getAllFilms({jwt_token, limit, queryStringData}) {
     try {
-        const res = yield call(getAllFilmss, jwt_token, limit);
+        const res = yield call(getAllFilmss, jwt_token, limit, queryStringData);
         yield put({
             type: FILM_ACTIONS.GETALLFILMS_RESOLVED,
             payload: {
@@ -63,7 +64,7 @@ export function* deleteFilm({filmId, jwt_token}) {
 
 
         yield put({
-            type: FILM_ACTIONS.UPDATEILMDETAIL_REJECTED,
+            type: FILM_ACTIONS.DELETEFILM_REJECTED,
             payload: {
                 error: createErrorString(error)
             }
@@ -83,7 +84,7 @@ export function* addFilm({data, jwt_token}) {
 
 
         yield put({
-            type: FILM_ACTIONS.UPDATEILMDETAIL_REJECTED,
+            type: FILM_ACTIONS.ADDFILM_REJECTED,
             payload: {
                 error: createErrorString(error)
             }
@@ -102,7 +103,31 @@ export function* addFilmRating({filmId, rating, jwt_token}) {
 
 
         yield put({
-            type: FILM_ACTIONS.UPDATEILMDETAIL_REJECTED,
+            type: FILM_ACTIONS.ADDRATING_REJECTED,
+            payload: {
+                error: createErrorString(error)
+            }
+        })
+    }
+}
+
+export function* filterFilmResult({queryStringData, jwt_token}) {
+
+    try {
+        const res = yield call(filterFilms, queryStringData, jwt_token);
+        console.log(res);
+        yield put({
+            type: FILM_ACTIONS.FILTERRESULT_RESOLVED,
+            payload: {
+                films: res,
+            }
+
+        })
+    } catch (error) {
+
+
+        yield put({
+            type: FILM_ACTIONS.FILTERRESULT_REJECTED,
             payload: {
                 error: createErrorString(error)
             }

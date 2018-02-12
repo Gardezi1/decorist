@@ -7,3 +7,23 @@
 .loader {
     clear: both;
 }
+
+.actions{
+    padding-top: 11px;
+    padding-bottom: 11px;
+    background: #fafafa;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.alignAddButton{
+    margin-right: 2%;
+}
+
+.headerInputBoxes {
+    width: 80%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 3%;
+}

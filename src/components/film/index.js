@@ -8,6 +8,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import ReactStars from 'react-stars'
 
 export class Film extends React.Component {
+
     handleDelete = (id) => {
 
         const {
@@ -30,7 +31,8 @@ export class Film extends React.Component {
         )
     }
     loadItems = (page_number) => {
-        this.props.getAllFilms(this.props.jwt_token, page_number * 10);
+        const queryStringData = this.makeFilterQueryString();
+        this.props.getAllFilms(this.props.jwt_token, page_number * 10, queryStringData);
     }
     renderFilmsList = () => {
         const {
@@ -107,7 +109,6 @@ export class Film extends React.Component {
         })
         return (
             <div>
-                <Button className="btn btn-success" onClick={this.handleModalToggle}>Add Film</Button>
                 <br/>
                 <br/>
                 <InfiniteScroll
@@ -128,7 +129,11 @@ export class Film extends React.Component {
             film: [],
             showCreateModal: false,
             loading: false,
-            hasMoreItems: true
+            hasMoreItems: true,
+            title: '',
+            description: '',
+            min_year: '',
+            max_year: ''
 
         }
     }
@@ -154,17 +159,111 @@ export class Film extends React.Component {
         }
     }
 
+    handleTitleChange = (e) =>{
+        this.setState({
+            title: e.target.value
+        })
+    }
+
+    handleDescriptionChange = (e) =>{
+        this.setState({
+            description: e.target.value
+        })
+    }
+
+    handleMinYearChange = (e) =>{
+        this.setState({
+            min_year: e.target.value
+        })
+    }
+
+    handleMaxYearChange = (e) =>{
+        this.setState({
+            max_year: e.target.value
+        })
+    }
+
+    makeFilterQueryString = () => {
+        const {
+            title,
+            description,
+            min_year,
+            max_year
+        } = this.state
+
+        const {
+            jwt_token
+        } = this.props;
+        
+        let queryStringData = ''
+        if(title !== ""){
+            queryStringData = `title=${title}`;
+        }
+
+        if(description !== ""){
+            queryStringData = `${queryStringData}&description=${description}`
+        }
+
+        if(min_year !== ""){
+            queryStringData = `${queryStringData}&min_year=${min_year}`;
+        }
+
+        if(max_year !== ""){
+            queryStringData = `${queryStringData}&max_year=${max_year}`
+        }
+        return queryStringData;
+    }
+
+    handleFilter = () => {
+      const {
+        jwt_token
+      }  = this.props;
+      const queryStringData = this.makeFilterQueryString();  
+      this.props.filterResult(queryStringData, jwt_token)  
+    }
+
     render() {
 
         const {
-            films,
-            loading,
-            showCreateModal
+            showCreateModal,
+            title,
+            description,
+            min_year,
+            max_year
         } = this.state;
 
         return (
             <div>
+                <div className="actions">
+                    <div className="container">
 
+                        <div className="pull-left">
+                            <input type="text" className="headerInputBoxes"  value={title} placeholder="Title" onChange={this.handleTitleChange}/>
+                        </div>
+
+                        <div className="pull-left">
+                            <input type="text" className="headerInputBoxes"  value={description} placeholder="Description" onChange={this.handleTitleChange}/>
+                        </div>
+
+                        <div className="pull-left">
+                            <input type="text" className="headerInputBoxes" maxLength="4" value={min_year} placeholder="Min Year" onChange={this.handleMinYearChange}/>
+                        </div>
+
+                        <div className="pull-left">
+                            <input type="text" className="headerInputBoxes" maxLength="4" value={max_year} placeholder="Max Year" onChange={this.handleMaxYearChange}/>
+                        </div>
+
+                        <div className="pull-left">
+                            <Button className="btn btn-sm btn-green btn-success" onClick={this.handleFilter}><span className="fa fa-search"></span></Button>
+                        </div>
+
+                        <div className="pull-right alignAddButton">
+
+                            <Button className="btn btn-sm btn-green btn-success" onClick={this.handleModalToggle}><span className="fa fa-plus"></span></Button>
+
+                        </div>
+                    </div>
+                </div>
                 {
                     this.renderFilmsList()
                 }
