@@ -8,11 +8,13 @@ import {SignUp} from '../components/signup';
 const mapStateToProps = (state, props) => {
     const {
         error,
-        jwt_token
+        jwt_token,
+        action
     } = state.user;
     return {
         error,
-        jwt_token
+        jwt_token,
+        action
     }
 }
 

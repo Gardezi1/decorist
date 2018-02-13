@@ -37,7 +37,7 @@ export function* signUp(data) {
     try {
         const res = yield call(register, data.credentials);
 
-        yield call(browserHistory.push, '/signIn');
+        // yield call(browserHistory.push, '/');
         yield put({
             type: USER_ACTIONS.SIGNUP_RESOLVED,
             payload: res

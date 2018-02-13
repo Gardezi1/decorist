@@ -21,7 +21,8 @@ export const user = (state = DEFAULT_USER_STATE, action) => {
             return {
                 ...state,
                 loading: true,
-                error: ''
+                error: '',
+                action: "login"
             };
 
         case USER_ACTIONS.LOGIN_RESOLVED:
@@ -30,28 +31,32 @@ export const user = (state = DEFAULT_USER_STATE, action) => {
                 jwt_token: action.payload.jwt_token,
                 user: action.payload.user,
                 loading: false,
-                error: ''
+                error: '',
+                action: "login_resolved"
             };
 
         case USER_ACTIONS.LOGIN_REJECTED:
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error
+                error: action.payload.error,
+                action: "login_rejected"
             };
 
         case USER_ACTIONS.SIGNUP:
             return {
                 ...state,
                 loading: true,
-                error: ''
+                error: '',
+                action: "signup"
             };
 
         case USER_ACTIONS.SIGNUP_RESOLVED:
             return {
                 ...state,
                 loading: false,
-                error: ''
+                error: '',
+                action: "signup_resolved"
             };
 
         case USER_ACTIONS.SIGNUP_REJECTED:
@@ -59,7 +64,8 @@ export const user = (state = DEFAULT_USER_STATE, action) => {
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error
+                error: action.payload.error,
+                action: "signup_rejected"
             };
 
 
@@ -67,21 +73,24 @@ export const user = (state = DEFAULT_USER_STATE, action) => {
             return {
                 ...DEFAULT_USER_STATE,
                 loading: true,
-                error: ''
+                error: '',
+                action: "logout"
             };
 
         case USER_ACTIONS.LOGOUT_RESOLVED:
             return {
                 ...DEFAULT_USER_STATE,
                 loading: false,
-                error: ''
+                error: '',
+                action: "logout_resolved"
             };
 
         case USER_ACTIONS.LOGOUT_REJECTED:
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error
+                error: action.payload.error,
+                action: "logout_rejected"
             };
 
         default:

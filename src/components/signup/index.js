@@ -58,6 +58,10 @@ export class SignUp extends React.Component {
         if (nextProps.error !== '' && !nextProps.laoding) {
             alert(nextProps.error);
         }
+        if (nextProps.action === 'signup_resolved') {
+            alert("Your account has been made");
+            this.props.router.push('/signIn')
+        }
     }
 
     render() {
