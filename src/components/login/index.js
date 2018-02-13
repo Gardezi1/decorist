@@ -83,7 +83,8 @@ export class Login extends React.Component {
 
                     <FormGroup>
                         <Col smOffset={2} sm={10}>
-                            <Button type="submit" onClick={this.handleSubmit} bsClass="btn centerAlign btn-success">{LOGIN}</Button>
+                            <Button type="submit" onClick={this.handleSubmit}
+                                    bsClass="btn centerAlign btn-success">{LOGIN}</Button>
                         </Col>
                     </FormGroup>
                 </Form>
